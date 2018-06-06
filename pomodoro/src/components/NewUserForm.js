@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import config from './firebaseInfo';
-
-firebase.initializeApp(config);
+import fire from './firebaseInfo';
 
 class NewUserForm extends Component {
+  constructor() {
+    super();
+    this.state = ({
+      user: null,
+    });
+  }
 
   createNewUser=()=>{
     let username = document.getElementById("user").value;
     let password = document.getElementById("pass").value;
-    firebase.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
+    fire.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
       let errorCode = error.code;
       let errorMessage = error.message;
     });

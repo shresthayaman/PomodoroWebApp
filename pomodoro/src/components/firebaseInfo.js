@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+
 const config = {
     apiKey: "AIzaSyBwArX-pn0ctOAs2LGMJPPUgf4AVBD2jrc",
     authDomain: "pomodorotimerr.firebaseapp.com",
@@ -7,4 +9,5 @@ const config = {
     messagingSenderId: "455549070062"
   };
 
-export default config;
+const fire = firebase.initializeApp(config);
+export default fire;
