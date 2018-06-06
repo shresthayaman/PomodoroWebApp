@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+//still need to import firebase
 
 export default class Leaderboard extends Component {
   constructor(props) {
@@ -19,8 +20,19 @@ export default class Leaderboard extends Component {
   };
   componentDidMount() {
     //get stuff from firebase
-    this.setState({
-      users: _FIREBASE_RESULT_
+    const usersRef = firebase.database().ref("users");
+    usersRef.on("value", snapshot => {
+      let users = snapshot.val();
+      let newState = [];
+      for (let user in users) {
+        newState.push({
+          name: users[user].name,
+          cycles: users[user].cycles
+        });
+      }
+      this.setState({
+        users: newState
+      });
     });
   }
   render() {
