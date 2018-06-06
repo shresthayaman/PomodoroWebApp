@@ -9,8 +9,8 @@ class UserPage extends Component {
         this.state = {
             username: "",
             cycles: 0,
-            id: "",
-            databaseid: ""
+            uid: "",
+            allPersons: []
         }
     }
 
@@ -20,39 +20,46 @@ class UserPage extends Component {
 
     componentDidMount() {
         //fire.auth().currentUser.uid
-        console.log("component mounts");
         firebase.database().ref("users").on('value', (snapshot) => {
+            let persons = [];
             for (let person in snapshot.val()){
-                console.log(snapshot.val()[person].id);
-                if(snapshot.val()[person].id){
-                    this.setState({
-                        username: snapshot.val()[person].username,
-                        cycles: snapshot.val()[person].cycles,
-                        databaseid: person
-                    });
-                }
+                persons.push({
+                    username: snapshot.val()[person].username,
+                    cycles: snapshot.val()[person].cycles,
+                    databaseid: person,
+                    uid: snapshot.val()[person].uid
+                });
             }
+            this.setState({
+                allPersons: persons
+            })
         });
     }
 
     updateCount=()=>{
-        firebase.database().ref("users").once('value', (snapshot) => {
-            let dataid = this.state.databaseid;
-            console.log(dataid);
-            if(snapshot.val().dataid){
-                console.log("snapshot value does not equal null")
-                firebase.database().ref("users").update({ cycles : this.state.cycles + 1 });
+        let alreadyIncluded = false;
+        let id = "";
+        let tempCycles = 0;
+        for(let person in this.state.allPersons){
+            console.log(this.state.allPersons[person].uid)
+            if(this.state.allPersons[person].uid === fire.auth().currentUser.uid){
+                alreadyIncluded = true
+                id = this.state.allPersons[person].databaseid
+                tempCycles = this.state.allPersons[person].cycles
             }
-            else{
-                console.log("snapshot value is null")
-                let data = {
-                    username: this.state.username,
-                    cycles: this.state.cycles + 1,
-                    id: fire.auth().currentUser.uid
-                }
-                firebase.database().ref("users").push(data);
+        }
+        if(alreadyIncluded){
+            console.log(id);
+            firebase.database().ref(`/users/${id}`).update({ cycles : tempCycles + 1 });
+        }
+        else{
+            let newPerson = {
+                username: "",
+                cycles: 1,
+                uid: fire.auth().currentUser.uid
             }
-        });
+            firebase.database().ref("users").push(newPerson);
+        }
     }
 
     render(){

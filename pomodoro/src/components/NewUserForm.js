@@ -13,6 +13,8 @@ class NewUserForm extends Component {
   createNewUser=()=>{
     let username = document.getElementById("user").value;
     let password = document.getElementById("pass").value;
+    console.log(username);
+    console.log(password);
     fire.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
       let errorCode = error.code;
       let errorMessage = error.message;
