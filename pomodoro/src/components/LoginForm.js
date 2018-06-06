@@ -25,7 +25,7 @@ class LoginForm extends Component {
                     <input />
                 </div>
                 <div>
-                    <Link to='/NewUser'>
+                    <Link to='/NewUserForm'>
                         <button> Create New User </button>
                     </Link>
                 </div>
