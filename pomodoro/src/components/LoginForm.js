@@ -34,11 +34,16 @@ class LoginForm extends Component {
             <br />
             <br />
             <label className="leaderboard-font" />
-            <Input placeholder="Password" type="text" id="password" />
+            <Input
+              type="password"
+              placeholder="Password"
+              type="text"
+              id="password"
+            />
             <br />
             <br />
             <Button
-              style={{ background: "#c5e8ed" }}
+              style={{ background: "#8fc5d1", color: "white" }}
               variant="contained"
               onClick={this.login}
             >
@@ -47,8 +52,12 @@ class LoginForm extends Component {
             <br />
             <br />
             <h2 className="leaderboard-font">Don't have an account?</h2>
-            <Link to="/CreateUser">
-              <Button variant="contained" style={{ background: "#c5e8ed" }}>
+            <Link to="/CreateUser" style={{ textDecoration: "none" }}>
+              <Button
+                textDecoration="none"
+                variant="contained"
+                style={{ background: "#8fc5d1", color: "white" }}
+              >
                 Sign Up
               </Button>
             </Link>
