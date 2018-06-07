@@ -3,7 +3,6 @@ import firebase from 'firebase';
 import config from './firebaseInfo';
 import clock from './clock.png';
 
-
 firebase.initializeApp(config);
 
 export default class NewUserForm extends Component {
