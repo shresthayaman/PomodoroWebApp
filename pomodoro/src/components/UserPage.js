@@ -19,7 +19,6 @@ class UserPage extends Component {
     }
 
     componentDidMount() {
-        //fire.auth().currentUser.uid
         firebase.database().ref("users").on('value', (snapshot) => {
             let persons = [];
             for (let person in snapshot.val()){
@@ -63,7 +62,6 @@ class UserPage extends Component {
     render(){
         return(
             <div>
-                Hello World
                 <Link to='/Login'>
                     <button onClick={this.logout}> logout </button>
                     <button onClick={this.updateCount}> Increment Count </button>
