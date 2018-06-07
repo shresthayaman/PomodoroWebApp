@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import firebase from 'firebase';
-import fire from './firebaseInfo';
-import clock from './clock.png';
+import React, { Component } from "react";
+import fire from "./firebaseInfo";
+import clock from "./clock.png";
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
 
 class NewUserForm extends Component {
   constructor() {
     super();
-    this.state = ({
-      user: null,
-    });
+    this.state = {
+      user: null
+    };
   }
 
   createNewUser = () => {
@@ -18,33 +19,49 @@ class NewUserForm extends Component {
       let errorCode = error.code;
       let errorMessage = error.message;
     });*/
-    fire.auth().createUserWithEmailAndPassword(username, password).then((u) => {
-    }).then((u) => { console.log(u) })
-      .catch((error) => {
-        console.log(error);
+    fire
+      .auth()
+      .createUserWithEmailAndPassword(username, password)
+      .then(u => {})
+      .then(u => {
+        console.log(u);
       })
-
-  }
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
       <div className="background">
-        <style>{'body { background-color: #c5e8ed; }'}</style>
+        <style>{"body { background-color: #c5e8ed; }"}</style>
         <div className="App">
-          <img src={clock} className="clock" style={{ width: '200px', height: '200px', textalign: 'center' }} />
+          <img
+            src={clock}
+            className="clock"
+            style={{ width: "200px", height: "200px", textalign: "center" }}
+          />
           <div className="login-box2">
             <h1 className="App-title">Create your account:</h1>
             <br />
-            <label className="leaderboard-font">Enter your E-mail:</label>
-            <input id="user"></input>
+            <label className="leaderboard-font" />
+            <Input placeholder="Email address" id="user" />
             <br />
             <br />
-            <label className="leaderboard-font">Create a Password:</label>
-            <input id="pass"></input>
-            < br />
+            <label className="leaderboard-font" />
+            <Input type="password" placeholder="Password" id="pass" />
             <br />
             <br />
-            <div><button style={{ backgroundColor: 'white', width: '60px', border: 'none', borderRadius: '5px' }} onClick={this.createNewUser}>Create</button></div>
+            <br />
+            <div>
+              <Button
+                style={{ background: "#8fc5d1", color: "white" }}
+                onClick={this.createNewUser}
+                variant="contained"
+              >
+                Create Account
+              </Button>
+            </div>
           </div>
         </div>
       </div>
