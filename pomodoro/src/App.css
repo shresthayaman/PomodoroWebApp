@@ -1,10 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Oxygen');
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  background-color: #c5e8ed;
 }
 
 .App-header {
@@ -15,12 +13,19 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 2.5em;
+  font-family: 'Fjalla One', sans-serif;  
+  margin-top: 10%;
 }
+
+.leaderboard-font{
+  font-size: 1.2em;
+  font-family: 'Fjalla One', sans-serif;}
 
 .App-intro {
   font-size: large;
 }
+
 
 .Leaderboard {
   text-align: left;
@@ -34,6 +39,28 @@
   float: right;
   margin: 1.5%;
 }
+
+.login-box { 
+  border-radius: 20px;
+  width: 46%;
+  display: inline-block;
+  font-family: 'Fjalla One', sans-serif;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  text-align:center;
+  background-color: rgb(214, 214, 214);
+  margin-top: 7%;
+}
+
+#round { 
+  border-radius: 50%;
+}
+
+.logo { 
+  width: 35%;
+  margin-top: 7%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -41,4 +68,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#loginButton { 
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/*  NewUserForm.js css */
+.login-box2 { 
+  border-radius: 20px;
+  width: 46%;
+  display: inline-block;
+  font-family: 'Fjalla One', sans-serif;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  text-align:center;
+  background-color: rgb(214, 214, 214);
+  margin-top: 10%;
+}
+
+.clock { 
+  position: absolute;
 }
