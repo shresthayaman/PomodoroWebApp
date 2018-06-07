@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LeaderboardDisplay from "./LeaderboardDisplay";
 import firebase from "firebase";
-import fire from './firebaseInfo';
+import leaderboard from './leaderboard.png';
 
 export default class Leaderboard extends Component {
   constructor(props) {
@@ -51,9 +51,13 @@ export default class Leaderboard extends Component {
     });
     return (
       <div>
-        <h1>Leaderboard</h1>
-        {rankedDisplay}
+      <div className="backgroundLeaderboard">
+          <img src={leaderboard} className="leaderboard" style={{ width: '300px', height: 'auto', textalign: 'center',marginTop:'2%', marginLeft: '2%'}} />
+          {rankedDisplay}
+      <div className="footer"></div>
+      </div>     
       </div>
+
     );
   }
 }

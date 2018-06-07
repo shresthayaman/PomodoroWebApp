@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Paper from "@material-ui/core/Paper";
 import { Z_DEFAULT_COMPRESSION } from "zlib";
 import "./LeaderboardDisplay.css";
+import profilepic from './profilepic.png'; 
 
 /* PROPS
        user: object with fields
@@ -36,26 +37,26 @@ export default class LeaderboardDisplay extends Component {
       <Paper style={style}>
         <div className="Leaderboard">
           <div className="Data">
-            <p>
+            <p className="rankings">
               {" "}
               <strong> Rank: </strong>
               {rank + 1}{" "}
             </p>
 
-            <p>
+            <p className="rankings">
               {" "}
               <strong> Name: </strong>
               {name}{" "}
             </p>
 
-            <p>
+            <p className="rankings">
               {" "}
               <strong> Cycles: </strong>
               {cycles}{" "}
             </p>
           </div>
           <span className="Data2">
-            <img src={this.state.url} width="100" />
+            <img src={profilepic} className="profilepic"  width="100" />
           </span>
         </div>
       </Paper>
