@@ -30,6 +30,8 @@ import leaderboardLogo from "./leaderboard.png";
 import Timer from "./Timer";
 
 import { Link } from "react-router-dom";
+import fire from "./firebaseInfo";
+import firebase from "firebase";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const drawerWidth = 400;
@@ -124,6 +126,10 @@ class TaskBar extends React.Component {
     currentInput: "",
     toDoList: [],
     completedList: []
+  };
+
+  logout = () => {
+    fire.auth().signOut();
   };
 
   randomId() {
@@ -399,9 +405,23 @@ class TaskBar extends React.Component {
                 <MenuIcon />
               </IconButton>
               <img src={logo} height="40" />
-              <Link to="/Leaderboard">
-                <img src={leaderboardLogo} height="60" />
-              </Link>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ marginRight: 50 }}>
+                  <Link to="/Leaderboard">
+                    <img src={leaderboardLogo} height="60" />
+                  </Link>
+                </div>
+                <Link to="/Login" style={{ textDecoration: "none" }}>
+                  <Button
+                    variant="contained"
+                    onClick={this.logout}
+                    style={{ background: "#ffffff", marginRight: 30 }}
+                  >
+                    {" "}
+                    Logout{" "}
+                  </Button>
+                </Link>
+              </div>
 
               {/* Add other things you want to add at the app bar here */}
             </Toolbar>

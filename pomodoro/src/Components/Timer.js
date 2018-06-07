@@ -40,7 +40,7 @@ class Timer extends Component {
       break_min: 0,
       work_milli: 1500000,
       break_milli: 300000,
-      open: true
+      open: false
     };
     this.url = "http://streaming.tdiradio.com:8000/house.mp3";
     this.audio = new Audio(this.url);
