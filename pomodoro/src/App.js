@@ -3,7 +3,6 @@ import './App.css';
 import LoginForm from './components/LoginForm';
 import UserPage from './components/UserPage';
 import fire from './components/firebaseInfo';
-import Leaderboard from "./components/Leaderboard";
 
 class App extends Component {
   constructor() {
@@ -17,7 +16,7 @@ class App extends Component {
     this.authListener();
   }
 
-  authListener=()=>{
+  authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
@@ -34,7 +33,6 @@ class App extends Component {
       <div>
         {this.state.user && <UserPage />}
         {this.state.user === null && <LoginForm />}
-        <Leaderboard />
       </div>
     );
   }
