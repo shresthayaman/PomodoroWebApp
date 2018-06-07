@@ -22,7 +22,16 @@
   font-size: large;
 }
 
+.Leaderboard {
+  text-align: left;
+  padding: 3px;
+}
+
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

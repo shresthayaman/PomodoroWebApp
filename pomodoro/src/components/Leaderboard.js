@@ -1,5 +1,17 @@
 import React, { Component } from "react";
-//still need to import firebase
+import LeaderboardDisplay from "./LeaderboardDisplay";
+import firebase from "firebase";
+
+const config = {
+  apiKey: "AIzaSyBwArX-pn0ctOAs2LGMJPPUgf4AVBD2jrc",
+  authDomain: "pomodorotimerr.firebaseapp.com",
+  databaseURL: "https://pomodorotimerr.firebaseio.com",
+  projectId: "pomodorotimerr",
+  storageBucket: "",
+  messagingSenderId: "455549070062"
+};
+
+const fire = firebase.initializeApp(config);
 
 export default class Leaderboard extends Component {
   constructor(props) {
@@ -26,7 +38,7 @@ export default class Leaderboard extends Component {
       let newState = [];
       for (let user in users) {
         newState.push({
-          name: users[user].name,
+          name: users[user].username,
           cycles: users[user].cycles
         });
       }
@@ -38,6 +50,7 @@ export default class Leaderboard extends Component {
   render() {
     //order the users based on cycles
     let rankedUsers = this.state.users.sort(this.compare);
+    console.log(rankedUsers);
     let rankedDisplay = rankedUsers.map(usr => {
       return (
         <LeaderboardDisplay
@@ -46,6 +59,11 @@ export default class Leaderboard extends Component {
         />
       );
     });
-    return { rankedDisplay };
+    return (
+      <div>
+        <h1>Leaderboard</h1>
+        {rankedDisplay}
+      </div>
+    );
   }
 }
