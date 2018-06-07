@@ -41,7 +41,6 @@ class UserPage extends Component {
         let id = "";
         let tempCycles = 0;
         for(let person in this.state.allPersons){
-            console.log(this.state.allPersons[person].uid)
             if(this.state.allPersons[person].uid === fire.auth().currentUser.uid){
                 alreadyIncluded = true
                 id = this.state.allPersons[person].databaseid
@@ -49,12 +48,11 @@ class UserPage extends Component {
             }
         }
         if(alreadyIncluded){
-            console.log(id);
             firebase.database().ref(`/users/${id}`).update({ cycles : tempCycles + 1 });
         }
         else{
             let newPerson = {
-                username: "",
+                username: fire.auth().currentUser.email.slice(0, fire.auth().currentUser.email.indexOf('@')),
                 cycles: 1,
                 uid: fire.auth().currentUser.uid
             }
@@ -63,7 +61,6 @@ class UserPage extends Component {
     }
 
     render(){
-        console.log(this.state);
         return(
             <div>
                 Hello World

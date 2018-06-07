@@ -13,12 +13,16 @@ class NewUserForm extends Component {
   createNewUser=()=>{
     let username = document.getElementById("user").value;
     let password = document.getElementById("pass").value;
-    console.log(username);
-    console.log(password);
-    fire.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
+    /*fire.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
       let errorCode = error.code;
       let errorMessage = error.message;
-    });
+    });*/
+    fire.auth().createUserWithEmailAndPassword(username, password).then((u)=>{
+    }).then((u)=>{console.log(u)})
+    .catch((error) => {
+        console.log(error);
+      })
+
   }
 
   render() {
@@ -33,7 +37,7 @@ class NewUserForm extends Component {
           <input id="pass"/>
         </div>
         <div>
-          <button onClick={this.createNewUser}>
+          <button onClick={this.createNewUser} >
             Create
           </button>
         </div>

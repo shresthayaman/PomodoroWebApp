@@ -8,7 +8,6 @@ class LoginForm extends Component {
         let user = document.getElementById("username").value;
         let code = document.getElementById("password").value;
         fire.auth().signInWithEmailAndPassword(user, code);
-        console.log("logged in");
     }
 
     render(){
