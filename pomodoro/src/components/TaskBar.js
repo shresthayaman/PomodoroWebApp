@@ -20,6 +20,8 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Tooltip from "@material-ui/core/Tooltip";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add.js";
 
 import listLogo from "./listLogo.png";
 
@@ -45,7 +47,8 @@ const styles = theme => ({
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    })
+    }),
+    background: "#5294E2"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -278,13 +281,15 @@ class TaskBar extends React.Component {
             id="taskInput"
             placeholder="Add Task"
             margin="normal"
-            style={{ width: 275 }}
+            style={{ width: 300 }}
             onKeyPress={this.handleKeyPress}
             onChange={event =>
               this.setState({ currentInput: event.target.value })
             }
           />
-          <button onClick={this.handleAddTaskClick}>Add Task</button>
+          <Button onClick={this.handleAddTaskClick}>
+            <AddIcon />
+          </Button>
         </div>
 
         <Divider />
