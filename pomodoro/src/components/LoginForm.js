@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import firebase from "firebase";
 import fire from "./firebaseInfo";
 import logo from "./po.png";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 
@@ -55,8 +52,8 @@ class LoginForm extends Component {
             <Link to="/CreateUser" style={{ textDecoration: "none" }}>
               <Button
                 textDecoration="none"
-                variant="contained"
                 style={{ background: "#8fc5d1", color: "white" }}
+                variant="contained"
               >
                 Sign Up
               </Button>
