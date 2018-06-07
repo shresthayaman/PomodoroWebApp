@@ -1,12 +1,33 @@
 .Leaderboard {
-  text-align: left;
-  padding: 3px;
-}
+    text-align: left;
+    padding: 3px;
+  }
+  
+  .Data {
+    display: inline-block;
+  }
 
-.Data {
-  display: inline-block;
-}
-.Data2 {
-  float: right;
-  margin: 1.5%;
-}
+  .Data2 {
+    float: right;
+    margin: 1.5%;
+  }
+
+  .backgroundLeaderboard { 
+    background-color:rgb(214, 214, 214);
+  }
+
+
+.rankings{
+  font-size: 1.2em;
+  font-family: 'Fjalla One', sans-serif;}
+
+  .footer { 
+    padding-bottom: 40px;
+    background-color: rgb(214, 214, 214);
+  }
+
+  .profilepic { 
+    max-width: 100%;
+    height: auto;
+
+  }

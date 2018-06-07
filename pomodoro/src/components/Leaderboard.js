@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LeaderboardDisplay from "./LeaderboardDisplay";
 import firebase from "firebase";
+import leaderboard from './leaderboard.png';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -71,6 +72,7 @@ export default class Leaderboard extends Component {
         <br />
         {rankedDisplay}
       </div>
+
     );
   }
 }

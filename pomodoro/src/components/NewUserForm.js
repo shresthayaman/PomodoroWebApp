@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import fire from "./firebaseInfo";
 import clock from "./clock.png";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 
