@@ -24,6 +24,14 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add.js";
 
 import listLogo from "./listLogo.png";
+import logo from "./pomodoroLogo.png";
+import leaderboardLogo from "./leaderboard2.png";
+
+import Timer from "./Timer";
+
+import { Link } from "react-router-dom";
+import fire from "./firebaseInfo";
+import firebase from "firebase";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const drawerWidth = 400;
@@ -48,7 +56,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    background: "#5294E2"
+    background: "#F2F2F2"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -118,6 +126,10 @@ class TaskBar extends React.Component {
     currentInput: "",
     toDoList: [],
     completedList: []
+  };
+
+  logout = () => {
+    fire.auth().signOut();
   };
 
   randomId() {
@@ -380,18 +392,37 @@ class TaskBar extends React.Component {
               [classes[`appBarShift-${anchor}`]]: open
             })}
           >
-            <Toolbar disableGutters={!open}>
+            <Toolbar
+              disableGutters={!open}
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
               <IconButton
-                color="inherit"
+                color="default"
                 aria-label="open drawer"
                 onClick={this.handleDrawerOpen}
                 className={classNames(classes.menuButton, open && classes.hide)}
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant="title" color="inherit" noWrap>
-                POMODORO TIMER
-              </Typography>
+              <img src={logo} height="40" />
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ marginRight: 50 }}>
+                  <Link to="/Leaderboard">
+                    <img src={leaderboardLogo} height="60" />
+                  </Link>
+                </div>
+                <Link to="/Login" style={{ textDecoration: "none" }}>
+                  <Button
+                    variant="contained"
+                    onClick={this.logout}
+                    style={{ background: "#ffffff", marginRight: 30 }}
+                  >
+                    {" "}
+                    Logout{" "}
+                  </Button>
+                </Link>
+              </div>
+
               {/* Add other things you want to add at the app bar here */}
             </Toolbar>
           </AppBar>
@@ -410,9 +441,7 @@ class TaskBar extends React.Component {
             )}
           >
             <div className={classes.drawerHeader} />
-            <Typography>
-              {"You think water moves fast? You should see ice."}
-            </Typography>
+            <Timer />
           </main>
           {after}
         </div>
