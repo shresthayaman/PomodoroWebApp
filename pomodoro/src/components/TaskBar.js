@@ -18,6 +18,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import listLogo from "./listLogo.png";
 
@@ -111,9 +113,21 @@ class TaskBar extends React.Component {
     open: false,
     anchor: "left",
     currentInput: "",
-    toDoList: ["first", "second", "third"],
+    toDoList: [],
     completedList: []
   };
+
+  randomId() {
+    // Math.random should be unique because of its seeding algorithm.
+    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+    // after the decimal.
+    return (
+      "_" +
+      Math.random()
+        .toString(36)
+        .substr(2, 9)
+    );
+  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -124,8 +138,9 @@ class TaskBar extends React.Component {
   };
 
   handleAddTaskClick = () => {
+    let id = this.randomId();
     let tasks = this.state.toDoList;
-    tasks.push(this.state.currentInput);
+    tasks.push({ task: this.state.currentInput, id: id, checked: false });
     this.setState({
       toDoList: tasks
     });
@@ -134,9 +149,96 @@ class TaskBar extends React.Component {
 
   handleKeyPress = event => {
     if (event.key === "Enter") {
-      console.log("pressed");
       this.handleAddTaskClick();
     }
+  };
+
+  handleActiveDelete = idValue => {
+    //get index of the value to remove
+    let indexToDelete = -1;
+    for (let i = 0; i < this.state.toDoList.length; i++) {
+      if (this.state.toDoList[i].id === idValue) {
+        indexToDelete = i;
+      }
+    }
+
+    let tempArray = this.state.toDoList;
+    tempArray.splice(indexToDelete, 1); //splice removes it from that specific array: no need for return
+
+    this.setState({
+      toDoList: tempArray
+    });
+  };
+
+  handleActiveCheckChange = idValue => {
+    let indexToMove = -1;
+    for (let i = 0; i < this.state.toDoList.length; i++) {
+      if (this.state.toDoList[i].id === idValue) {
+        indexToMove = i;
+      }
+    }
+    //create a copy of checkedList and add the checked value in active list to completed list
+    let tempCheckedList = this.state.completedList;
+    //change the checked value to true when moving form active list to completed list
+    let tempTask = {
+      task: this.state.toDoList[indexToMove].task,
+      id: this.state.toDoList[indexToMove].id,
+      checked: true
+    };
+    tempCheckedList.push(tempTask);
+
+    //remove the checked value from the active list completely
+    let tempActiveList = this.state.toDoList;
+    tempActiveList.splice(indexToMove, 1);
+
+    this.setState({
+      toDoList: tempActiveList,
+      completedList: tempCheckedList
+    });
+  };
+
+  handleCheckedDelete = idValue => {
+    //get index of the value to remove
+    let indexToDelete = -1;
+    for (let i = 0; i < this.state.completedList.length; i++) {
+      if (this.state.completedList[i].id === idValue) {
+        indexToDelete = i;
+      }
+    }
+
+    let tempArray = this.state.completedList;
+    tempArray.splice(indexToDelete, 1); //splice removes it from that specific array: no need for return
+
+    this.setState({
+      completedList: tempArray
+    });
+  };
+
+  handleCheckedCheckChange = idValue => {
+    let indexToMove = -1;
+    for (let i = 0; i < this.state.completedList.length; i++) {
+      if (this.state.completedList[i].id === idValue) {
+        indexToMove = i;
+      }
+    }
+    //create a copy of active and add the unchecked value in completed list to active list
+    let tempActiveList = this.state.toDoList;
+    //change the checked value to false when moving form completed list to active list
+    let tempTask = {
+      task: this.state.completedList[indexToMove].task,
+      id: this.state.completedList[indexToMove].id,
+      checked: false
+    };
+    tempActiveList.push(tempTask);
+
+    //remove the unchecked value from the completed list completely
+    let tempCheckedList = this.state.completedList;
+    tempCheckedList.splice(indexToMove, 1);
+
+    this.setState({
+      toDoList: tempActiveList,
+      completedList: tempCheckedList
+    });
   };
 
   render() {
@@ -156,7 +258,7 @@ class TaskBar extends React.Component {
         <div className={classes.drawerHeader}>
           <img src={listLogo} height="40" width="40" />
           <p> To Do List</p>
-          <IconButton onClick={this.handleDrawerClose}>
+          <IconButton onClick={() => this.handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
@@ -185,14 +287,23 @@ class TaskBar extends React.Component {
 
         <Divider />
 
-        <List style={{ minHeight: 300, maxHeight: 300, overflow: "auto" }}>
-          {this.state.toDoList.map(task => {
+        <List style={{ minHeight: "40%", maxHeight: "40%", overflow: "auto" }}>
+          {this.state.toDoList.map(listItem => {
             return (
               <div>
                 <ListItem dense button>
-                  <ListItemText dense primary={task} />
+                  <ListItemText primary={listItem.task} />
                   <ListItemSecondaryAction>
-                    <Checkbox />
+                    <Checkbox
+                      checked={listItem.checked}
+                      onChange={() => this.handleActiveCheckChange(listItem.id)}
+                    />
+                    <IconButton
+                      aria-label="Delete"
+                      onClick={() => this.handleActiveDelete(listItem.id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
                   </ListItemSecondaryAction>
                 </ListItem>
                 <Divider />
@@ -200,6 +311,7 @@ class TaskBar extends React.Component {
             );
           })}
         </List>
+        <Divider />
 
         <div style={{ textAlign: "center" }}>
           <h>
@@ -208,14 +320,31 @@ class TaskBar extends React.Component {
           <br />
         </div>
 
-        <List>
-          {this.state.completedList.map(task => {
+        <List style={{ minHeight: "37%", maxHeight: "37%", overflow: "auto" }}>
+          {this.state.completedList.map(listItem => {
             return (
               <div>
                 <ListItem dense button>
-                  <ListItemText dense primary={task} />
+                  <ListItemText
+                    primary={
+                      <div>
+                        <del>{listItem.task}</del>
+                      </div>
+                    }
+                  />
                   <ListItemSecondaryAction>
-                    <Checkbox />
+                    <Checkbox
+                      checked={listItem.checked}
+                      onChange={() =>
+                        this.handleCheckedCheckChange(listItem.id)
+                      }
+                    />
+                    <IconButton
+                      aria-label="Delete"
+                      onClick={() => this.handleCheckedDelete(listItem.id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
                   </ListItemSecondaryAction>
                 </ListItem>
                 <Divider />
@@ -223,8 +352,6 @@ class TaskBar extends React.Component {
             );
           })}
         </List>
-
-        <Divider />
       </Drawer>
     );
 
