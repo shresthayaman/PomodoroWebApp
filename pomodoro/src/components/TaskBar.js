@@ -134,6 +134,7 @@ class TaskBar extends React.Component {
   };
 
   handleDrawerClose = () => {
+    console.log("I have been ordered to close ");
     this.setState({ open: false });
   };
 
@@ -242,6 +243,7 @@ class TaskBar extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     //defining variables based on props and states for later use
     const { classes, theme } = this.props;
     const { anchor, open, toDoList, completedList } = this.state;
@@ -258,7 +260,7 @@ class TaskBar extends React.Component {
         <div className={classes.drawerHeader}>
           <img src={listLogo} height="40" width="40" />
           <p> To Do List</p>
-          <IconButton onClick={() => this.handleDrawerClose}>
+          <IconButton onClick={this.handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
