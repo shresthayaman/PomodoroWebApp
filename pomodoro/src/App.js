@@ -3,7 +3,6 @@ import './App.css';
 import LoginForm from './components/LoginForm';
 import UserPage from './components/UserPage';
 import fire from './components/firebaseInfo';
-import Timer from "./Components/Timer.js";
 
 class App extends Component {
   constructor() {
@@ -34,7 +33,6 @@ class App extends Component {
       <div>
         {this.state.user && <UserPage />}
         {this.state.user === null && <LoginForm />}
-        <Timer />
       </div>
     );
   }

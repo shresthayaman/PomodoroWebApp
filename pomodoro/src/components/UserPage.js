@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fire from './firebaseInfo';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
+import Timer from './Timer.js';
 
 class UserPage extends Component {
     constructor(props) {
@@ -69,6 +70,7 @@ class UserPage extends Component {
                 <Link to='/Leaderboard'>
                     <button> To Leaderboard </button>
                 </Link>
+                <Timer />
             </div>
         );
     }

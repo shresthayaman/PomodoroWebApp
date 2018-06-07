@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Countdown from "react-countdown-now";
 import CircularProgressbar from "react-circular-progressbar";
-import "/Users/deepakgoel/Desktop/PomodoroWebApp/pomodoro/src/style.css";
+import "./style.css";
 import Button from "@material-ui/core/Button";
 
 //fix text at bottom
@@ -104,11 +104,11 @@ class Timer extends Component {
       // current_time: this.state.dummy_time + Date.now()
       paused: true,
       realSeconds:
-        (this.state.dummy_time -
-          this.state.seconds -
-          this.state.start_time -
-          this.state.twentyfive) *
-        -1
+      (this.state.dummy_time -
+        this.state.seconds -
+        this.state.start_time -
+        this.state.twentyfive) *
+      -1
     });
     console.log(this.state.realSeconds);
     this.setState({
