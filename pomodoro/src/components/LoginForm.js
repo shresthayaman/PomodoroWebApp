@@ -37,9 +37,9 @@ class LoginForm extends Component {
             <Input
               type="password"
               placeholder="Password"
+              type="text"
               id="password"
             />
-
             <br />
             <br />
             <Button
@@ -55,8 +55,8 @@ class LoginForm extends Component {
             <Link to="/CreateUser" style={{ textDecoration: "none" }}>
               <Button
                 textDecoration="none"
-                variant="contained"
                 style={{ background: "#8fc5d1", color: "white" }}
+                variant="contained"
               >
                 Sign Up
               </Button>

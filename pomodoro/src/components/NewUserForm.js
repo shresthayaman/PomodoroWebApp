@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import firebase from "firebase";
 import fire from "./firebaseInfo";
 import clock from "./clock.png";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
+import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 
 class NewUserForm extends Component {
@@ -61,6 +60,7 @@ class NewUserForm extends Component {
               <Button
                 style={{ background: "#8fc5d1", color: "white" }}
                 onClick={this.createNewUser}
+                variant="contained"
               >
                 Create Account
               </Button>

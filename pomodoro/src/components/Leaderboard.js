@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import LeaderboardDisplay from "./LeaderboardDisplay";
 import firebase from "firebase";
 import leaderboard from './leaderboard.png';
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import fire from "./firebaseInfo";
+
+const style = {
+  background: "#5294E2",
+  color: "white"
+};
 
 export default class Leaderboard extends Component {
   constructor(props) {
@@ -51,11 +62,15 @@ export default class Leaderboard extends Component {
     });
     return (
       <div>
-      <div className="backgroundLeaderboard">
-          <img src={leaderboard} className="leaderboard" style={{ width: '300px', height: 'auto', textalign: 'center',marginTop:'2%', marginLeft: '2%'}} />
-          {rankedDisplay}
-      <div className="footer"></div>
-      </div>     
+        <AppBar style={style} position="static" color="inherit">
+          <Toolbar>
+            <Typography variant="title" color="inherit">
+              Leaderboard
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <br />
+        {rankedDisplay}
       </div>
 
     );
