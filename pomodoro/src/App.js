@@ -29,6 +29,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('hello world')
     return (
       <div>
         {this.state.user && <UserPage />}
