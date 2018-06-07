@@ -2,7 +2,14 @@
 
 .App {
   text-align: center;
-  background-color: #c5e8ed;
+  background-color: white;
+  margin-top: 6%;
+}
+
+.App2 {
+  text-align: center;
+  background-color: #f2f2f2;
+  margin-top: 6%;
 }
 
 .App-header {
@@ -13,9 +20,10 @@
 }
 
 .App-title {
-  font-size: 2.5em;
+  font-size: 1.7em;
   font-family: 'Fjalla One', sans-serif;  
   margin-top: 10%;
+  color: #929292;
 }
 
 .leaderboard-font{
@@ -27,15 +35,13 @@
 }
 
 .login-box { 
-  border-radius: 20px;
-  width: 46%;
+  width: 40%;
   display: inline-block;
   font-family: 'Fjalla One', sans-serif;
-  padding-top: 20px;
+  margin-top: 4%;
   padding-bottom: 30px;
   text-align:center;
-  background-color: rgb(214, 214, 214);
-  margin-top: 7%;
+  background-color: white;
 }
 
 #round { 
@@ -73,20 +79,30 @@
 
 /*  NewUserForm.js css */
 .login-box2 { 
-  border-radius: 20px;
-  width: 46%;
+  width: 43%;
   display: inline-block;
   font-family: 'Fjalla One', sans-serif;
-  padding-top: 20px;
   padding-bottom: 30px;
   text-align:center;
-  background-color: rgb(214, 214, 214);
+  background-color: white;
   margin-top: 10%;
 }
 
 .clock { 
   position: absolute;
 }
+
+.header { 
+  background-color: white;
+  margin-top: 8%;
+}
+
+.biglogin { 
+  text-align: center;
+}
+
+.signupDiv { 
+  display: inline-block;
 
 .error-message{
   color: red;

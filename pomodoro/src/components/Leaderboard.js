@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import LeaderboardDisplay from "./LeaderboardDisplay";
 import firebase from "firebase";
-import leaderboard from './leaderboard.png';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import fire from "./firebaseInfo";
+import leaderboard from './leaderboard.png'
 
 const style = {
-  background: "#5294E2",
-  color: "white"
+  background: "rgb(214, 214, 214)",
+  color: "white",
+  paddingBottom: '10px'
 };
 
 export default class Leaderboard extends Component {
@@ -62,11 +63,14 @@ export default class Leaderboard extends Component {
     });
     return (
       <div>
+        <style>{"body { background-color: #c5e8ed; }"}</style>
         <AppBar style={style} position="static" color="inherit">
           <Toolbar>
-            <Typography variant="title" color="inherit">
-              Leaderboard
-            </Typography>
+          <img
+              src={leaderboard}
+              className="leaderboard"
+              style={{ width: "300px", height: "auto", textalign: "center", paddingTop: '10px'}}
+            />
           </Toolbar>
         </AppBar>
         <br />

@@ -67,15 +67,15 @@ class NewUserForm extends Component {
   render() {
     return (
       <div className="background">
-        <style>{"body { background-color: #c5e8ed; }"}</style>
-        <div className="App">
+        <style>{"body { background-color: #f2f2f2; }"}</style>
+        <div className="App2">
           <img
             src={clock}
             className="clock"
-            style={{ width: "200px", height: "200px", textalign: "center" }}
+            style={{ width: "15%", height: "auto", left: "22%", top: "17%", textalign: "center" }}
           />
           <div className="login-box2">
-            <h1 className="App-title">Create your account:</h1>
+            <h1 className="App-title">CREATE YOUR ACCOUNT:</h1>
             <br />
             <Input
               placeholder="Email address"
@@ -106,12 +106,12 @@ class NewUserForm extends Component {
             <br />
             <div>
               <Button
-                style={{ background: "#8fc5d1", color: "white" }}
+                style={{ background: '#ace8d6', color: "white" }}
                 onClick={this.createNewUser}
-                variant="contained"
-              >
-                Create Account
+                variant="contained">Create
               </Button>
+              <br/>
+              <br/>
             </div>
           </div>
         </div>
