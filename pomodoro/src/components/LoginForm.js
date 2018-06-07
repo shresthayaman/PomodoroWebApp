@@ -9,10 +9,54 @@ import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 
 class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      errorMessages: "",
+      password: "",
+      username: ""
+    }
+  }
+
+  updateText = (field, value) => {
+    this.setState({
+      [field]: value
+    });
+  }
+
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.login();
+    }
+  }
+
   login = () => {
-    let user = document.getElementById("username").value;
-    let code = document.getElementById("password").value;
-    fire.auth().signInWithEmailAndPassword(user, code);
+    let user = this.state.username;
+    let code = this.state.password;
+    let hello = "";
+    fire.auth().signInWithEmailAndPassword(user, code)
+      .catch(function (error) {
+        let errorCode = error.code;
+        if (errorCode === 'auth/wrong-password') {
+          alert('Wrong password.');
+        }
+        else if (errorCode === 'auth/invalid-credential') {
+          alert('Credentials expired.');
+        }
+        else if (errorCode === 'auth/operation-not-allowed') {
+          alert('Invalid type of account.');
+        }
+        else if (errorCode === 'auth/user-disabled') {
+          alert('Your account has been disabled.');
+        }
+        else {
+          alert('User not found. Check username or click Sign Up');
+        }
+      });
+    this.setState({
+      password: "",
+      username: ""
+    });
   };
 
   render() {
@@ -30,17 +74,25 @@ class LoginForm extends Component {
           <div className="login-box">
             <label className="leaderboard-font" />
             <br />
-            <Input placeholder="Username" type="text" id="username" />
+            <Input
+              placeholder="Username"
+              type="email"
+              onChange={(e) => this.updateText("username", e.target.value)}
+              onKeyPress={this.handleKeyPress}
+              value={this.state.username}
+            />
             <br />
             <br />
             <label className="leaderboard-font" />
             <Input
               type="password"
               placeholder="Password"
-              type="text"
-              id="password"
+              onChange={(e) => this.updateText("password", e.target.value)}
+              onKeyPress={this.handleKeyPress}
+              value={this.state.password}
             />
             <br />
+            {this.state.errorMessages && <div className="error-message"> {this.state.errorMessages} </div>}
             <br />
             <Button
               style={{ background: "#ace8d6", color: "white" }}

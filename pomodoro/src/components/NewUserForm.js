@@ -11,27 +11,57 @@ class NewUserForm extends Component {
   constructor() {
     super();
     this.state = {
-      user: null
+      errorMessages: "",
+      password: "",
+      repassword: "",
+      username: ""
     };
   }
 
+  updateText = (field, value) => {
+    this.setState({
+      [field]: value
+    });
+  }
+
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.createNewUser();
+    }
+  }
+
   createNewUser = () => {
-    let username = document.getElementById("user").value;
-    let password = document.getElementById("pass").value;
-    /*fire.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
-      let errorCode = error.code;
-      let errorMessage = error.message;
-    });*/
-    fire
-      .auth()
-      .createUserWithEmailAndPassword(username, password)
-      .then(u => {})
-      .then(u => {
-        console.log(u);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    let username = this.state.username
+    let password = this.state.password
+    let repassword = this.state.repassword
+    if (password === repassword) {
+      fire
+        .auth()
+        .createUserWithEmailAndPassword(username, password)
+        .catch(function (error) {
+          let errorCode = error.code;
+          if (errorCode === 'auth/email-already-in-use') {
+            alert('Email entered is already in use.');
+          }
+          else if (errorCode === 'auth/invalid-email') {
+            alert('Email address is not valid');
+          }
+          else if (errorCode === 'auth/operation-not-allowed') {
+            alert('Email and password accoutns are not enabled.');
+          }
+          else {
+            alert('Weak password. Try making password longer and include digits.');
+          }
+        });
+    }
+    else {
+      alert('The two passwords entered do not match.')
+    }
+    this.setState({
+      password: "",
+      username: "",
+      repassword: ""
+    });
   };
 
   render() {
@@ -47,12 +77,30 @@ class NewUserForm extends Component {
           <div className="login-box2">
             <h1 className="App-title">CREATE YOUR ACCOUNT:</h1>
             <br />
-            <label className="leaderboard-font" />
-            <Input placeholder="Email address" id="user" />
+            <Input
+              placeholder="Email address"
+              onChange={(e) => this.updateText("username", e.target.value)}
+              value={this.state.username}
+              onKeyPress={this.handleKeyPress}
+            />
             <br />
             <br />
-            <label className="leaderboard-font" />
-            <Input type="password" placeholder="Password" id="pass" />
+            <Input
+              type="password"
+              placeholder="Password"
+              onChange={(e) => this.updateText("password", e.target.value)}
+              value={this.state.password}
+              onKeyPress={this.handleKeyPress}
+            />
+            <br />
+            <br />
+            <Input
+              type="password"
+              placeholder="Re-enter Password"
+              onChange={(e) => this.updateText("repassword", e.target.value)}
+              value={this.state.repassword}
+              onKeyPress={this.handleKeyPress}
+            />
             <br />
             <br />
             <br />

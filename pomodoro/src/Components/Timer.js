@@ -3,29 +3,76 @@ import Countdown from "react-countdown-now";
 import CircularProgressbar from "react-circular-progressbar";
 import "./style.css";
 import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import TextField from "@material-ui/core/TextField";
 
 //fix text at bottom
 
 class Timer extends Component {
-  state = {
-    time: 0,
-    start_time: Date.now(),
-    twentyfive: 1500000,
-    difference: 0,
-    counter: 0,
-    reset: false,
-    paused: false,
-    paused_time: 0,
-    paused_num: 1000,
-    button_text: "Start Break",
-    button_color: "primary",
-    status_text: "Keep Working",
-    current_time: 1500000,
-    reset_text: "Start",
-    dummy_time: 0,
-    renderSeconds: 0,
-    seconds: 0,
-    realSeconds: 0
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: 0,
+      start_time: Date.now(),
+      twentyfive: 1500000,
+      difference: 0,
+      counter: 0,
+      reset: false,
+      paused: false,
+      paused_time: 0,
+      paused_num: 0,
+      button_text: "Start Break",
+      button_color: "primary",
+      status_text: "Keep Working",
+      current_time: 1500000,
+      reset_text: "Start",
+      dummy_time: 0,
+      renderSeconds: 0,
+      seconds: 0,
+      realSeconds: 0,
+      started: false,
+      play: false,
+      work_min: 0,
+      break_min: 0,
+      work_milli: 1500000,
+      break_milli: 300000,
+      open: false
+    };
+    this.url = "http://streaming.tdiradio.com:8000/house.mp3";
+    this.audio = new Audio(this.url);
+    this.togglePlay = this.togglePlay.bind(this);
+  }
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+  handleSubmit = () => {
+    let work_milli1 = this.state.work_min * 60000;
+    let break_milli1 = this.state.break_min * 60000;
+    this.setState({
+      open: false,
+      work_milli: work_milli1,
+      break_milli: break_milli1
+    });
+  };
+
+  changeWork = e => {
+    this.setState({
+      work_min: e.target.value // can't put stuff before e for some reason
+    });
+  };
+
+  changeBreak = e => {
+    this.setState({
+      break_min: e.target.value // can't put stuff before e for some reason
+    });
   };
 
   getPercent() {
@@ -36,11 +83,19 @@ class Timer extends Component {
     } else {
       percent_dif = time_dif / Math.floor(this.state.twentyfive);
     }
-    this.setState({
-      difference: percent_dif * 100,
-      dummy_time: Date.now() - 1000,
-      seconds: this.state.seconds + 1000
-    });
+    if (this.state.started == true) {
+      this.setState({
+        difference: percent_dif * 100,
+        dummy_time: Date.now() - 1000,
+        seconds: this.state.seconds + 1000
+      });
+    } else {
+      this.setState({
+        difference: 100,
+        dummy_time: Date.now() - 1000,
+        seconds: this.state.seconds + 1000
+      });
+    }
     if (this.state.difference == 100) {
       this.setState({
         status_text: "Take a Break!"
@@ -50,73 +105,93 @@ class Timer extends Component {
 
     //console.log(this.state.seconds);
   }
+  togglePlay() {
+    this.setState({ play: !this.state.play });
+    console.log(this.audio);
+    this.state.play ? this.audio.play() : this.audio.pause();
+  }
 
   //RESET BUTTON-------------------------------------------------------------
   resetButton = () => {
+    this.setState({
+      started: true,
+      open: false,
+      status_text: "Keep Working",
+      button_text: "Start Break",
+      button_color: "primary"
+    });
     let pause_time = Date.now();
+    let work_time = this.state.work_milli;
     if (this.state.reset == false) {
       this.setState({
         reset: true,
         start_time: pause_time,
-        twentyfive: 1500000,
+        twentyfive: work_time,
         button_text: "Start Break",
         button_color: "primary",
-        current_time: pause_time + 1500000,
-        dummy_time: 1500000, //used for Pause button
+        current_time: pause_time + work_time,
         reset_text: "Reset"
       });
     } else {
       this.setState({
-        reset: false,
-        dummy_time: 1500000
+        reset: false
       });
     }
   };
 
   //STARTS THE BREAK BUTTON-------------------------------------------------------------
   breakTimer = () => {
-    if (this.state.twentyfive == 1500000) {
+    let work_time = this.state.work_milli;
+    let break_time = this.state.break_milli;
+    if (this.state.twentyfive == work_time) {
       this.setState({
-        twentyfive: 300000,
+        twentyfive: break_time,
         start_time: Date.now(),
         button_text: "Go Back to Work",
+        status_text: "Keep Relaxing",
         button_color: "secondary",
-        current_time: Date.now() + 300000
+        current_time: Date.now() + break_time
       });
       //GO BACK TO WORK
     } else {
       this.setState({
-        twentyfive: 1500000,
+        twentyfive: work_time,
         start_time: Date.now(),
         button_text: "Start Break",
         button_color: "primary",
-        current_time: Date.now() + 1500000
+        status_text: "Keep Working",
+        current_time: Date.now() + work_time
+      });
+    }
+    if (this.state.difference == 100) {
+      this.setState({
+        status_text: "Take a Break!"
       });
     }
     //console.log("Hello");
   };
 
   //PAUSE BUTTON-------------------------------------------------------------
-  pauseButton = () => {
-    //console.log(this.state.dummy_time);
-    //console.log(Date.now());
-    this.setState({
-      // current_time: this.state.dummy_time + Date.now()
-      paused: true,
-      realSeconds:
-      (this.state.dummy_time -
-        this.state.seconds -
-        this.state.start_time -
-        this.state.twentyfive) *
-      -1
-    });
-    console.log(this.state.realSeconds);
-    this.setState({
-      current_time: this.state.realSeconds
-    });
-    console.log(this.state.current_time);
-    this.forceUpdate();
-  };
+  // pauseButton = () => {
+  //   //console.log(this.state.dummy_time);
+  //   //console.log(Date.now());
+  //   this.setState({
+  //     // current_time: this.state.dummy_time + Date.now()
+  //     paused: true,
+  //     realSeconds:
+  //       (this.state.dummy_time -
+  //         this.state.seconds -
+  //         this.state.start_time -
+  //         this.state.twentyfive) *
+  //       -1
+  //   });
+  //   console.log(this.state.realSeconds);
+  //   this.setState({
+  //     current_time: this.state.realSeconds
+  //   });
+  //   console.log(this.state.current_time);
+  //   this.forceUpdate();
+  // };
   //END OF BUTTONS------------------------------------------------------------------------------
 
   componentDidMount() {
@@ -148,8 +223,7 @@ class Timer extends Component {
         </span>
       );
     };
-
-    // console.log(this.state.difference);
+    console.log(this.state.work_min);
     return (
       <div>
         <div
@@ -201,10 +275,64 @@ class Timer extends Component {
           >
             {this.state.button_text}
           </Button>
+          <div>
+            <Button
+              onClick={this.handleClickOpen}
+              variant="raised"
+              color="primary"
+            >
+              Edit Timer
+            </Button>
+            <Dialog
+              open={this.state.open}
+              onClose={this.handleClose}
+              aria-labelledby="form-dialog-title"
+            >
+              <DialogTitle id="form-dialog-title">Timer Settings</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  Enter how long you want the work time and breaks to be. The
+                  default time is 25 minutes of work time and 5 minutes of break
+                  time.
+                </DialogContentText>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="worktime"
+                  label="Work Time"
+                  type="worktime"
+                  type="number"
+                  onChange={e => this.changeWork(e)}
+                  placeholder="25"
+                />
+                &emsp;&emsp;
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="breaktime"
+                  label="Break Time"
+                  type="breaktime"
+                  type="number"
+                  onChange={e => this.changeBreak(e)}
+                  placeholder="5"
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.handleClose} color="primary">
+                  Cancel
+                </Button>
+                <Button onClick={this.handleSubmit} color="primary">
+                  Submit
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </div>
           &emsp;&emsp;
-          <Button onClick={this.pauseButton} variant="raised" color="secondary">
-            Pause
-          </Button>
+          <div>
+            {/* <button onClick={this.togglePlay}>
+              {this.state.play ? "Pause" : "Play"}
+            </button> */}
+          </div>
         </div>
         <div
           clasname="status"

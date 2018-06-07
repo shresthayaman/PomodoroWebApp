@@ -103,4 +103,7 @@
 
 .signupDiv { 
   display: inline-block;
+
+.error-message{
+  color: red;
 }
