@@ -26,6 +26,20 @@
   font-size: large;
 }
 
+
+.Leaderboard {
+  text-align: left;
+  padding: 3px;
+}
+
+.Data {
+  display: inline-block;
+}
+.Data2 {
+  float: right;
+  margin: 1.5%;
+}
+
 .login-box { 
   border-radius: 20px;
   width: 46%;
@@ -48,8 +62,12 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #loginButton { 
