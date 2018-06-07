@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import App from './App.js';
+import App2 from './App2.js';
 import {BrowserRouter, Route, Link, Redirect} from 'react-router-dom';
-import NewUserForm from'./NewUserForm.js';
 
 class Routes extends Component{
     render(){
@@ -11,7 +11,7 @@ class Routes extends Component{
                 <div>
                     <Redirect to='/Login' />
                     <Route path="/Login" component={App}/>
-                    <Route path="/NewUserForm" component={NewUserForm}/>
+                    <Route path="/CreateUser" component={App2}/>
                 </div>
             </BrowserRouter>
         );
