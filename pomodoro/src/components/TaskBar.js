@@ -25,7 +25,7 @@ import AddIcon from "@material-ui/icons/Add.js";
 
 import listLogo from "./listLogo.png";
 import logo from "./pomodoroLogo.png";
-import leaderboardLogo from "./leaderboard.png";
+import leaderboardLogo from "./leaderboard2.png";
 
 import Timer from "./Timer";
 
