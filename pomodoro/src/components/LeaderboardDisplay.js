@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Paper from "@material-ui/core/Paper";
-import { INSPECT_MAX_BYTES } from "buffer";
+import { Z_DEFAULT_COMPRESSION } from "zlib";
 
 /* PROPS
        user: object with fields
@@ -20,6 +20,13 @@ const style = {
 };
 
 export default class LeaderboardDisplay extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      url:
+        "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+    };
+  }
   render() {
     const { user, rank } = this.props;
     const { name, cycles } = user;
@@ -27,23 +34,28 @@ export default class LeaderboardDisplay extends Component {
     return (
       <Paper style={style}>
         <div className="Leaderboard">
-          <p>
-            {" "}
-            <strong> Rank: </strong>
-            {rank + 1}{" "}
-          </p>
+          <div className="Data">
+            <p>
+              {" "}
+              <strong> Rank: </strong>
+              {rank + 1}{" "}
+            </p>
 
-          <p>
-            {" "}
-            <strong> Name: </strong>
-            {name}{" "}
-          </p>
+            <p>
+              {" "}
+              <strong> Name: </strong>
+              {name}{" "}
+            </p>
 
-          <p>
-            {" "}
-            <strong> Cycles: </strong>
-            {cycles}{" "}
-          </p>
+            <p>
+              {" "}
+              <strong> Cycles: </strong>
+              {cycles}{" "}
+            </p>
+          </div>
+          <span className="Data2">
+            <img src={this.state.url} width="100" />
+          </span>
         </div>
       </Paper>
     );
