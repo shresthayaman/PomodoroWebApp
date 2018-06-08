@@ -35,7 +35,7 @@ import firebase from "firebase";
 import "typeface-roboto";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const drawerWidth = 400;
+const drawerWidth = 375;
 
 const styles = theme => ({
   root: {
@@ -306,22 +306,20 @@ class TaskBar extends React.Component {
         </div>
         <Divider />
 
-
         <div
           className="input"
           style={{
             display: "flex",
             flexDirection: "row",
             flexWrap: "nowrap",
-            textAlign: "center"
+            textAlign: "flex-end"
           }}
         >
-
           <TextField
             id="taskInput"
             placeholder="Add Task"
             margin="normal"
-            style={{ width: "85%", marginLeft: "5%", marginBottom: "5%" }}
+            style={{ width: "85%", marginLeft: "5%" }}
             onKeyPress={this.handleKeyPress}
             onChange={event =>
               this.setState({ currentInput: event.target.value })
@@ -331,7 +329,7 @@ class TaskBar extends React.Component {
             <AddIcon />
           </Button>
         </div>
-
+        <br />
         <h
           style={{
             fontFamily: "Verdana, Geneva, sans-serif",
@@ -464,9 +462,11 @@ class TaskBar extends React.Component {
                   <Button
                     variant="contained"
                     onClick={this.logout}
-
-                    style={{ background: "#ace8d6", color: 'white', marginRight: 30 }}
-
+                    style={{
+                      background: "#ace8d6",
+                      color: "white",
+                      marginRight: 30
+                    }}
                   >
                     {" "}
                     Logout{" "}
