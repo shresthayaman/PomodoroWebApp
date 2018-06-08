@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import fire from "./firebaseInfo";
 import clock from "./clock.png";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Input from "@material-ui/core/Input";
@@ -110,9 +111,17 @@ class NewUserForm extends Component {
                 onClick={this.createNewUser}
                 variant="contained">Create
               </Button>
-              <br/>
-              <br/>
+              <br />
+              <br />
             </div>
+            <Link to="/Login" style={{ textDecoration: "none", fontfamily: 'Fjalla One' }}>
+              <Button
+                style={{ background: '#ace8d6', color: "white" }}
+                variant="contained"
+              >
+                Back
+            </Button>
+            </Link>
           </div>
         </div>
       </div>
