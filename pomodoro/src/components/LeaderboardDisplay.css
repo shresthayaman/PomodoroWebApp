@@ -1,4 +1,6 @@
+
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One|Oxygen');
+
 
 .Leaderboard {
     text-align: left;
@@ -31,6 +33,7 @@
   .profilepic { 
     max-width: 100%;
     height: auto;
+
     margin-top: 10%;
   }
 
@@ -47,3 +50,4 @@
    font-Size: 40px; 
   font-family: 'Fjalla One' , 'sans-serif'; 
   }
+

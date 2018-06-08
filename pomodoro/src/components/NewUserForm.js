@@ -72,7 +72,9 @@ class NewUserForm extends Component {
           <img
             src={clock}
             className="clock"
+
             style={{ width: "15%", height: "auto", left: "22%", top: "12%", textalign: "center" }}
+
           />
           <div className="login-box2">
             <h1 className="App-title">CREATE YOUR ACCOUNT:</h1>
