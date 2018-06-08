@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import './App.css';
-import LoginForm from './components/LoginForm';
-import UserPage from './components/UserPage';
-import fire from './components/firebaseInfo';
+import React, { Component } from "react";
+import "./App.css";
+import LoginForm from "./components/LoginForm";
+import UserPage from "./components/UserPage";
+import fire from "./components/firebaseInfo";
 
 class App extends Component {
   constructor() {
     super();
-    this.state = ({
-      user: null,
-    });
+    this.state = {
+      user: null
+    };
   }
 
   componentDidMount() {
     this.authListener();
   }
 
-  authListener=()=>{
-    fire.auth().onAuthStateChanged((user) => {
+  authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user });
-        localStorage.setItem('user', user.uid);
+        localStorage.setItem("user", user.uid);
       } else {
         this.setState({ user: null });
-        localStorage.removeItem('user');
+        localStorage.removeItem("user");
       }
     });
-  }
+  };
 
   render() {
     console.log('hello world')
