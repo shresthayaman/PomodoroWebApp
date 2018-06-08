@@ -20,7 +20,7 @@ class Timer extends Component {
       start_time: Date.now(),
       twentyfive: 1500000,
       difference: 0,
-      counter: 0,
+      num_cycles: 0,
       reset: false,
       paused: false,
       paused_time: 0,
@@ -40,9 +40,11 @@ class Timer extends Component {
       break_min: 0,
       work_milli: 1500000,
       break_milli: 300000,
-      open: true
+      open: false,
+      taking_break: false,
+      inc_cycles: true
     };
-    this.url = "http://streaming.tdiradio.com:8000/house.mp3";
+    this.url = "http://www.gravomaster.com/alarm/sounds/Car_Alarm_Device.mp3";
     this.audio = new Audio(this.url);
     this.togglePlay = this.togglePlay.bind(this);
   }
@@ -61,6 +63,11 @@ class Timer extends Component {
       work_milli: work_milli1,
       break_milli: break_milli1
     });
+    if (this.state.started == true) {
+      this.setState({
+        button_text: "Use New Settings"
+      });
+    }
   };
 
   changeWork = e => {
@@ -96,10 +103,31 @@ class Timer extends Component {
         seconds: this.state.seconds + 1000
       });
     }
-    if (this.state.difference == 100) {
+    if (
+      this.state.difference == 100 &&
+      this.state.taking_break == false &&
+      this.state.started == true &&
+      this.state.inc_cycles == true
+    ) {
       this.setState({
-        status_text: "Take a Break!"
+        status_text: "Take a Break!",
+        num_cycles: this.state.num_cycles + 1,
+        inc_cycles: false
       });
+      // if (this.state.play == false) {
+      //   this.togglePlay;
+      // }
+    } else if (
+      this.state.difference == 100 &&
+      this.state.taking_break == true &&
+      this.state.started == true
+    ) {
+      this.setState({
+        status_text: "Go back to Work"
+      });
+      // if (this.state.play == false) {
+      //   this.togglePlay;
+      // }
     }
     //console.log(this.state.dummy_time);
 
@@ -113,13 +141,15 @@ class Timer extends Component {
 
   //RESET BUTTON-------------------------------------------------------------
   resetButton = () => {
-    this.setState({
-      started: true,
-      open: false,
-      status_text: "Keep Working",
-      button_text: "Start Break",
-      button_color: "primary"
-    });
+    if (this.state.started == false) {
+      this.setState({
+        started: true,
+        open: false,
+        status_text: "Keep Working",
+        button_text: "Start Break",
+        button_color: "primary"
+      });
+    }
     let pause_time = Date.now();
     let work_time = this.state.work_milli;
     if (this.state.reset == false) {
@@ -127,15 +157,13 @@ class Timer extends Component {
         reset: true,
         start_time: pause_time,
         twentyfive: work_time,
-        button_text: "Start Break",
+        status_text: "Keep Working",
         button_color: "primary",
         current_time: pause_time + work_time,
         reset_text: "Reset"
       });
     } else {
-      this.setState({
-        reset: false
-      });
+      this.setState({});
     }
   };
 
@@ -143,6 +171,10 @@ class Timer extends Component {
   breakTimer = () => {
     let work_time = this.state.work_milli;
     let break_time = this.state.break_milli;
+    // if (this.setState.play == true) {
+    //   this.togglePlay;
+    //   this.togglePlay;
+    // }
     if (this.state.twentyfive == work_time) {
       this.setState({
         twentyfive: break_time,
@@ -150,22 +182,23 @@ class Timer extends Component {
         button_text: "Go Back to Work",
         status_text: "Keep Relaxing",
         button_color: "secondary",
-        current_time: Date.now() + break_time
+        current_time: Date.now() + break_time,
+        taking_break: true
       });
-      //GO BACK TO WORK
     } else {
+      // if (this.setState.play == true) {
+      //   this.togglePlay;
+      // }
       this.setState({
         twentyfive: work_time,
         start_time: Date.now(),
         button_text: "Start Break",
         button_color: "primary",
         status_text: "Keep Working",
-        current_time: Date.now() + work_time
-      });
-    }
-    if (this.state.difference == 100) {
-      this.setState({
-        status_text: "Take a Break!"
+        current_time: Date.now() + work_time,
+        taking_break: false,
+        inc_cycles: true
+        // num_cycles: this.state.num_cycles + 1
       });
     }
     //console.log("Hello");
@@ -215,6 +248,7 @@ class Timer extends Component {
   // }
 
   render() {
+    console.log(this.state.taking_break);
     const renderer = ({ hours, minutes, seconds, completed }) => {
       // Render a countdown
       return (
@@ -328,11 +362,7 @@ class Timer extends Component {
             </Dialog>
           </div>
           &emsp;&emsp;
-          <div>
-            {/* <button onClick={this.togglePlay}>
-              {this.state.play ? "Pause" : "Play"}
-            </button> */}
-          </div>
+          <div />
         </div>
         <div
           clasname="status"
@@ -343,6 +373,7 @@ class Timer extends Component {
           }}
         >
           <h2>{this.state.status_text}</h2>
+          <p>{this.state.num_cycles} </p>
         </div>
       </div>
     );
