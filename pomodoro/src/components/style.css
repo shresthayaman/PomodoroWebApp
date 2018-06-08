@@ -10,11 +10,9 @@
 }
 
 .CircularProgressbar .CircularProgressbar-path {
-
-  stroke: #3e98c7;
+  stroke: #ace8d6;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s ease 0s;
-
 }
 
 .CircularProgressbar .CircularProgressbar-trail {
@@ -22,7 +20,7 @@
 }
 
 .CircularProgressbar .CircularProgressbar-text {
-  fill: #3e98c7;
+  fill: #ace8d6;
   font-size: 10px;
   dominant-baseline: middle;
   text-anchor: middle;
