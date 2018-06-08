@@ -64,13 +64,7 @@ class UserPage extends Component {
     render() {
         return (
             <div>
-                <Link to='/Login'>
-                    <button onClick={this.logout}> logout </button>
-                    <button onClick={this.updateCount}> Increment Count </button>
-                </Link>
-                <Link to='/Leaderboard'>
-                    <button> To Leaderboard </button>
-                </Link>
+
                 <TaskBar />
             </div>
         );

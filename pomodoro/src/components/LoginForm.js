@@ -67,7 +67,6 @@ class LoginForm extends Component {
         <img
               src={logo}
               className="po"
-              alt="po"
               style={{ width: "500px", height: "140px", textalign: "center" }}
             /></div>
           <div className="biglogin">

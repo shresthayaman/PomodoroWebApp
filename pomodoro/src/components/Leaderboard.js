@@ -9,8 +9,15 @@ import Typography from "@material-ui/core/Typography";
 import fire from "./firebaseInfo";
 import leaderboard from './leaderboard.png'
 
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import "./LeaderboardDisplay.css"; 
+import leaderboardLogo from "./leaderboard2.png";
+
+
 const style = {
-  background: "rgb(214, 214, 214)",
+  background: "#f2f2f2",
+
   color: "white",
   paddingBottom: '10px'
 };
@@ -63,14 +70,25 @@ export default class Leaderboard extends Component {
     });
     return (
       <div>
-        <style>{"body { background-color: #c5e8ed; }"}</style>
-        <AppBar style={style} position="static" color="inherit">
+
+        <style>{"body { background-color: '#f2f2f2'; }"}</style>
+        <AppBar style={{height: 70}} position="static" color="inherit">
           <Toolbar>
-          <img
+          {/* <img
               src={leaderboard}
               className="leaderboard"
-              style={{ width: "300px", height: "auto", textalign: "center", paddingTop: '10px'}}
-            />
+              style={{ width: "300px", height: "auto", textalign: "center", paddingTop: '10px'}} /> */}
+              <h2 className="mainFont">LEADERBOARD </h2>
+              <img src={leaderboardLogo} height="60" />
+              <div className='dashboardButton'>
+              <Link to="/Login" style={{ textDecoration: "none", float: 'right'}}>
+               <Button
+                 variant="contained"
+                 style={{ background: "#ace8d6", color: 'white', width: '80%', left: 800}}>
+                 {" "} Dashboard{" "}
+               </Button>
+             </Link></div>
+
           </Toolbar>
         </AppBar>
         <br />

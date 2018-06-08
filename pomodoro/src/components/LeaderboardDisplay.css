@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Oxygen');
+
+
 .Leaderboard {
     text-align: left;
     padding: 3px;
@@ -30,4 +34,20 @@
     max-width: 100%;
     height: auto;
 
+    margin-top: 10%;
   }
+
+  .leaderboardNav { 
+    background-color: white;
+  }
+
+  .dashboardButton { 
+    float: right;
+  }
+
+  .mainFont { 
+   color: #ace8d6; 
+   font-Size: 40px; 
+  font-family: 'Fjalla One' , 'sans-serif'; 
+  }
+
