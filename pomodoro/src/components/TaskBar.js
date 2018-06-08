@@ -353,7 +353,6 @@ class TaskBar extends React.Component {
                   <ListItemText primary={listItem.task} />
                   <ListItemSecondaryAction>
                     <Checkbox
-                      iconStyle={{ fill: "white" }}
                       checked={listItem.checked}
                       onChange={() => this.handleActiveCheckChange(listItem.id)}
                     />
@@ -399,6 +398,7 @@ class TaskBar extends React.Component {
                   />
                   <ListItemSecondaryAction>
                     <Checkbox
+                      color="primary"
                       checked={listItem.checked}
                       onChange={() =>
                         this.handleCheckedCheckChange(listItem.id)
