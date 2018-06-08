@@ -38,6 +38,7 @@ class UserPage extends Component {
     }
 
     updateCount = () => {
+        console.log("calling updateCoutn in userpage")
         let alreadyIncluded = false;
         let id = "";
         let tempCycles = 0;
@@ -64,8 +65,7 @@ class UserPage extends Component {
     render() {
         return (
             <div>
-
-                <TaskBar />
+                <TaskBar updateCount={this.updateCount} />
             </div>
         );
     }
