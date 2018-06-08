@@ -40,9 +40,11 @@ class Timer extends Component {
       break_min: 0,
       work_milli: 1500000,
       break_milli: 300000,
+
       open: false,
       taking_break: false,
       inc_cycles: true
+
     };
     this.url = "http://www.gravomaster.com/alarm/sounds/Car_Alarm_Device.mp3";
     this.audio = new Audio(this.url);
