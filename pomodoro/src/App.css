@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Oxygen');
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One|Oxygen");
 
 .App {
   text-align: center;
@@ -21,34 +21,35 @@
 
 .App-title {
   font-size: 1.7em;
-  font-family: 'Fjalla One', sans-serif;  
+  font-family: "Fjalla One", sans-serif;
   margin-top: 10%;
   color: #929292;
 }
 
-.leaderboard-font{
+.leaderboard-font {
   font-size: 1.2em;
-  font-family: 'Fjalla One', sans-serif;}
+  font-family: "Fjalla One", sans-serif;
+}
 
 .App-intro {
   font-size: large;
 }
 
-.login-box { 
+.login-box {
   width: 40%;
   display: inline-block;
-  font-family: 'Fjalla One', sans-serif;
+  font-family: "Fjalla One", sans-serif;
   margin-top: 4%;
   padding-bottom: 30px;
-  text-align:center;
+  text-align: center;
   background-color: white;
 }
 
-#round { 
+#round {
   border-radius: 50%;
 }
 
-.logo { 
+.logo {
   width: 35%;
   margin-top: 7%;
 }
@@ -67,7 +68,7 @@
   width: 50%;
 }
 
-#loginButton { 
+#loginButton {
   border: none;
   color: black;
   padding: 15px 32px;
@@ -78,32 +79,33 @@
 }
 
 /*  NewUserForm.js css */
-.login-box2 { 
+.login-box2 {
   width: 43%;
   display: inline-block;
-  font-family: 'Fjalla One', sans-serif;
+  font-family: "Fjalla One", sans-serif;
   padding-bottom: 30px;
-  text-align:center;
+  text-align: center;
   background-color: white;
   margin-top: 10%;
 }
 
-.clock { 
+.clock {
   position: absolute;
 }
 
-.header { 
+.header {
   background-color: white;
   margin-top: 8%;
 }
 
-.biglogin { 
+.biglogin {
   text-align: center;
 }
 
-.signupDiv { 
+.signupDiv {
   display: inline-block;
+}
 
-.error-message{
+.error-message {
   color: red;
 }
