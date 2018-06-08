@@ -48,7 +48,6 @@ class Timer extends Component {
       open: false,
       taking_break: false,
       inc_cycles: true
-
     };
     this.url = "http://www.gravomaster.com/alarm/sounds/Car_Alarm_Device.mp3";
 
@@ -76,7 +75,6 @@ class Timer extends Component {
         button_text: "Use New Settings"
       });
     }
-
   };
 
   changeWork = e => {
@@ -119,7 +117,7 @@ class Timer extends Component {
       this.state.started == true &&
       this.state.inc_cycles == true
     ) {
-      console.log("calling updateCount in Timer")
+      console.log("calling updateCount in Timer");
       this.props.updateCount();
       this.setState({
         status_text: "Take a Break!",
@@ -140,7 +138,6 @@ class Timer extends Component {
       // if (this.state.play == false) {
       //   this.togglePlay;
       // }
-
     }
     //console.log(this.state.dummy_time);
 
@@ -220,7 +217,6 @@ class Timer extends Component {
         taking_break: false,
         inc_cycles: true
         // num_cycles: this.state.num_cycles + 1
-
       });
     }
     //console.log("Hello");
@@ -270,7 +266,6 @@ class Timer extends Component {
   // }
 
   render() {
-
     console.log(this.state.taking_break);
 
     const renderer = ({ hours, minutes, seconds, completed }) => {
@@ -288,9 +283,10 @@ class Timer extends Component {
           className="circle"
           style={{
             position: "absolute",
-            width: "1200px",
-            height: "1200px",
-            right: "5%"
+            width: "1500px",
+            height: "1500px",
+            left: "30%",
+            top: "-1%"
           }}
         >
           <CircularProgressbar
@@ -304,8 +300,9 @@ class Timer extends Component {
             height: "15%",
             width: "15%",
             position: "absolute",
-            top: "40%",
-            right: "39.1%"
+            top: "43%",
+            right: "43%",
+            fontSize: "80px"
           }}
         >
           <Countdown
@@ -317,15 +314,16 @@ class Timer extends Component {
         <div
           className="buttons"
           style={{
-            top: "70%",
+            top: "45%",
             position: "absolute",
-            left: "45.5%"
+            left: "75%"
           }}
         >
           <Button onClick={this.resetButton} variant="raised" color="primary">
             {this.state.reset_text}
           </Button>
-          &emsp;&emsp;
+          <br />
+          <br />
           <Button
             onClick={this.breakTimer}
             variant="raised"
@@ -333,6 +331,8 @@ class Timer extends Component {
           >
             {this.state.button_text}
           </Button>
+          <br />
+          <br />
           <div>
             <Button
               onClick={this.handleClickOpen}
@@ -386,22 +386,26 @@ class Timer extends Component {
             </Dialog>
           </div>
           &emsp;&emsp;
-
           <div />
-
         </div>
         <div
           clasname="status"
           style={{
-            top: "77%",
+            top: "85%",
             position: "absolute",
-            left: "46%"
+            left: "43%"
           }}
         >
           <h2>{this.state.status_text}</h2>
-
-          <p>{this.state.num_cycles} </p>
-
+          <div
+            className="cycles"
+            style={{
+              left: "20%",
+              size: "20px"
+            }}
+          >
+            <p>Cycles: {this.state.num_cycles} </p>
+          </div>
         </div>
       </div>
     );
