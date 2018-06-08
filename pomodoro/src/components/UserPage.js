@@ -64,6 +64,7 @@ class UserPage extends Component {
     render() {
         return (
             <div>
+
                 <TaskBar />
             </div>
         );

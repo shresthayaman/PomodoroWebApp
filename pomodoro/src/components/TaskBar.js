@@ -22,10 +22,12 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add.js";
+
 import listLogo from "./listLogo.png";
 import logo from "./pomodoroLogo.png";
 import leaderboardLogo from "./leaderboard2.png";
 import Timer from "./Timer";
+
 import { Link } from "react-router-dom";
 import fire from "./firebaseInfo";
 import firebase from "firebase";
@@ -281,7 +283,9 @@ class TaskBar extends React.Component {
           </IconButton>
         </div>
 
+
         <div className="input" style={{ textAlign: "center", fontfamily: 'Fjalla One, sans-serif'}}>
+
           <h>
             <u>Active Tasks</u>
           </h>
@@ -401,7 +405,9 @@ class TaskBar extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
+
               <img src={logo} height="40"/>
+
               <div style={{ display: "flex", alignItems: "center" }}>
                 <div style={{ marginRight: 50 }}>
                   <Link to="/Leaderboard">
@@ -412,7 +418,9 @@ class TaskBar extends React.Component {
                   <Button
                     variant="contained"
                     onClick={this.logout}
+
                     style={{ background: "#ace8d6", color: 'white', marginRight: 30 }}
+
                   >
                     {" "}
                     Logout{" "}
