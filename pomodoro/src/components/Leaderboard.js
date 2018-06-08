@@ -10,7 +10,9 @@ import fire from "./firebaseInfo";
 import leaderboard from './leaderboard.png'
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import "./LeaderboardDisplay.css"
+import "./LeaderboardDisplay.css"; 
+import leaderboardLogo from "./leaderboard2.png";
+
 
 const style = {
   background: "#f2f2f2",
@@ -73,7 +75,8 @@ export default class Leaderboard extends Component {
               src={leaderboard}
               className="leaderboard"
               style={{ width: "300px", height: "auto", textalign: "center", paddingTop: '10px'}} /> */}
-              <h2 className="mainFont">LEADERBOARD</h2>
+              <h2 className="mainFont">LEADERBOARD </h2>
+              <img src={leaderboardLogo} height="60" />
               <div className='dashboardButton'>
               <Link to="/Login" style={{ textDecoration: "none", float: 'right'}}>
                <Button

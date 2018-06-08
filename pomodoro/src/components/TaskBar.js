@@ -22,13 +22,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add.js";
-
 import listLogo from "./listLogo.png";
 import logo from "./pomodoroLogo.png";
 import leaderboardLogo from "./leaderboard2.png";
-
 import Timer from "./Timer";
-
 import { Link } from "react-router-dom";
 import fire from "./firebaseInfo";
 import firebase from "firebase";
