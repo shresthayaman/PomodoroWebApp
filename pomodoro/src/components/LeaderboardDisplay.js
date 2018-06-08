@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Paper from "@material-ui/core/Paper";
 import "./LeaderboardDisplay.css";
-import profilepic from './profilepic.png'; 
+
+import profilepic2 from './profilepic2.png'; 
+
 
 /* PROPS
        user: object with fields
@@ -55,7 +57,9 @@ export default class LeaderboardDisplay extends Component {
             </p>
           </div>
           <span className="Data2">
-            <img src={profilepic} className="profilepic"  width="100" />
+
+            <img src={profilepic2} className="profilepic"  width="100" />
+
           </span>
         </div>
       </Paper>

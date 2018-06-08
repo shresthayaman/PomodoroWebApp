@@ -3,7 +3,8 @@
 .App {
   text-align: center;
   background-color: white;
-  margin-top: 6%;
+  margin-top: 4%;
+
 }
 
 .App2 {
@@ -79,14 +80,15 @@
 }
 
 /*  NewUserForm.js css */
-.login-box2 {
-  width: 43%;
+
+.login-box2 { 
+  width: 41%;
   display: inline-block;
   font-family: "Fjalla One", sans-serif;
   padding-bottom: 30px;
   text-align: center;
   background-color: white;
-  margin-top: 10%;
+  margin-top: 6%;
 }
 
 .clock {
@@ -106,6 +108,9 @@
   display: inline-block;
 }
 
+
+
 .error-message {
+
   color: red;
 }

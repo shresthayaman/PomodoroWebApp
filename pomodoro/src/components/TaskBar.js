@@ -26,7 +26,6 @@ import AddIcon from "@material-ui/icons/Add.js";
 import listLogo from "./listLogo.png";
 import logo from "./pomodoroLogo.png";
 import leaderboardLogo from "./leaderboard2.png";
-
 import Timer from "./Timer";
 
 import { Link } from "react-router-dom";
@@ -307,6 +306,7 @@ class TaskBar extends React.Component {
         </div>
         <Divider />
 
+
         <div
           className="input"
           style={{
@@ -316,6 +316,7 @@ class TaskBar extends React.Component {
             textAlign: "center"
           }}
         >
+
           <TextField
             id="taskInput"
             placeholder="Add Task"
@@ -450,7 +451,9 @@ class TaskBar extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <img src={logo} height="40" />
+
+              <img src={logo} height="40"/>
+
               <div style={{ display: "flex", alignItems: "center" }}>
                 <div style={{ marginRight: 50 }}>
                   <Link to="/Leaderboard">
@@ -461,7 +464,9 @@ class TaskBar extends React.Component {
                   <Button
                     variant="contained"
                     onClick={this.logout}
-                    style={{ background: "#ffffff", marginRight: 30 }}
+
+                    style={{ background: "#ace8d6", color: 'white', marginRight: 30 }}
+
                   >
                     {" "}
                     Logout{" "}
