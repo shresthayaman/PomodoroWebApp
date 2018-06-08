@@ -152,9 +152,9 @@ class Timer extends Component {
 
   //RESET BUTTON-------------------------------------------------------------
   resetButton = () => {
-
     if (this.state.started == false) {
       this.setState({
+        reset: true,
         started: true,
         open: false,
         status_text: "Keep Working",
@@ -162,7 +162,6 @@ class Timer extends Component {
         button_color: "primary"
       });
     }
-
     let pause_time = Date.now();
     let work_time = this.state.work_milli;
     if (this.state.reset == false) {
@@ -170,17 +169,15 @@ class Timer extends Component {
         reset: true,
         start_time: pause_time,
         twentyfive: work_time,
-
         status_text: "Keep Working",
-
         button_color: "primary",
         current_time: pause_time + work_time,
         reset_text: "Reset"
       });
     } else {
-
-      this.setState({});
-
+      this.setState({
+        reset: false
+      });
     }
   };
 
