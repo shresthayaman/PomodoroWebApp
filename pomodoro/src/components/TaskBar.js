@@ -300,8 +300,8 @@ class TaskBar extends React.Component {
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
-              <ChevronLeftIcon />
-            )}
+                <ChevronLeftIcon />
+              )}
           </IconButton>
         </div>
         <Divider />
@@ -452,7 +452,7 @@ class TaskBar extends React.Component {
                 <MenuIcon />
               </IconButton>
 
-              <img src={logo} height="40"/>
+              <img src={logo} height="40" />
 
               <div style={{ display: "flex", alignItems: "center" }}>
                 <div style={{ marginRight: 50 }}>
@@ -492,7 +492,7 @@ class TaskBar extends React.Component {
             )}
           >
             <div className={classes.drawerHeader} />
-            <Timer />
+            <Timer updateCount={this.props.updateCount} />
           </main>
           {after}
         </div>

@@ -119,6 +119,8 @@ class Timer extends Component {
       this.state.started == true &&
       this.state.inc_cycles == true
     ) {
+      console.log("calling updateCount in Timer")
+      this.props.updateCount();
       this.setState({
         status_text: "Take a Break!",
         num_cycles: this.state.num_cycles + 1,
