@@ -32,6 +32,8 @@ import { Link } from "react-router-dom";
 import fire from "./firebaseInfo";
 import firebase from "firebase";
 
+import "typeface-roboto";
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const drawerWidth = 400;
 
@@ -79,7 +81,8 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: "relative",
-    width: drawerWidth
+    width: drawerWidth,
+    backgroundColor: "#D3E9ED"
   },
   drawerHeader: {
     display: "flex",
@@ -153,15 +156,21 @@ class TaskBar extends React.Component {
   };
 
   handleAddTaskClick = () => {
-    let id = this.randomId();
-    let tasks = this.state.toDoList;
-    tasks.push({ task: this.state.currentInput, id: id, checked: false });
-    this.setState({
-      toDoList: tasks
-    });
-    document.getElementById("taskInput").value = "";
+    if (this.state.currentInput === "") {
+      console.log("The input is empty");
+    } else {
+      let id = this.randomId();
+      let tasks = this.state.toDoList;
+      tasks.push({ task: this.state.currentInput, id: id, checked: false });
+      this.setState({
+        currentInput: "",
+        toDoList: tasks
+      });
+      document.getElementById("taskInput").value = "";
+    }
   };
 
+  //When user presses enter, it enters the task in to the active task list
   handleKeyPress = event => {
     if (event.key === "Enter") {
       this.handleAddTaskClick();
@@ -272,8 +281,21 @@ class TaskBar extends React.Component {
         }}
       >
         <div className={classes.drawerHeader}>
-          <img src={listLogo} height="40" width="40" />
-          <p> To Do List</p>
+          <img
+            src={listLogo}
+            height="40"
+            width="40"
+            style={{ marginLeft: 10 }}
+          />
+          <p
+            style={{
+              fontFamily: "Verdana, Geneva, sans-serif",
+              fontSize: 20,
+              color: "#6BB3A1"
+            }}
+          >
+            To Do List
+          </p>
           <IconButton onClick={this.handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
@@ -282,32 +304,49 @@ class TaskBar extends React.Component {
             )}
           </IconButton>
         </div>
+        <Divider />
 
 
-        <div className="input" style={{ textAlign: "center", fontfamily: 'Fjalla One, sans-serif'}}>
+        <div
+          className="input"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            textAlign: "center"
+          }}
+        >
 
-          <h>
-            <u>Active Tasks</u>
-          </h>
-          <br />
           <TextField
             id="taskInput"
             placeholder="Add Task"
             margin="normal"
-            style={{ width: 300 }}
+            style={{ width: "85%", marginLeft: "5%", marginBottom: "5%" }}
             onKeyPress={this.handleKeyPress}
             onChange={event =>
               this.setState({ currentInput: event.target.value })
             }
           />
-          <Button onClick={this.handleAddTaskClick}>
+          <Button size="small" onClick={this.handleAddTaskClick}>
             <AddIcon />
           </Button>
         </div>
 
+        <h
+          style={{
+            fontFamily: "Verdana, Geneva, sans-serif",
+            fontSize: 15,
+            color: "#6BB3A1",
+            textAlign: "center",
+            marginBottom: "3%"
+          }}
+        >
+          Active Tasks
+        </h>
+
         <Divider />
 
-        <List style={{ minHeight: "40%", maxHeight: "40%", overflow: "auto" }}>
+        <List style={{ minHeight: "37%", maxHeight: "37%", overflow: "auto" }}>
           {this.state.toDoList.map(listItem => {
             return (
               <div>
@@ -331,14 +370,20 @@ class TaskBar extends React.Component {
             );
           })}
         </List>
-        <Divider />
 
-        <div style={{ textAlign: "center" }}>
-          <h>
-            <u>Completed Tasks</u>
-          </h>
-          <br />
-        </div>
+        <h
+          style={{
+            fontFamily: "Verdana, Geneva, sans-serif",
+            fontSize: 15,
+            color: "#6BB3A1",
+            textAlign: "center",
+            marginBottom: "3%"
+          }}
+        >
+          Completed Tasks
+        </h>
+
+        <Divider />
 
         <List style={{ minHeight: "37%", maxHeight: "37%", overflow: "auto" }}>
           {this.state.completedList.map(listItem => {
@@ -354,6 +399,7 @@ class TaskBar extends React.Component {
                   />
                   <ListItemSecondaryAction>
                     <Checkbox
+                      color="primary"
                       checked={listItem.checked}
                       onChange={() =>
                         this.handleCheckedCheckChange(listItem.id)
