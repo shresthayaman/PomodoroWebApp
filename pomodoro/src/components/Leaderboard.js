@@ -68,12 +68,13 @@ export default class Leaderboard extends Component {
         />
       );
     });
+
+
     return (
       <div>
-
-        <style>{"body { background-color: '#f2f2f2'; }"}</style>
-        <AppBar style={{height: 70}} position="static" color="inherit">
-          <Toolbar>
+        <style>{"body { background-color: rgb(250, 250, 250; }"}</style>
+        <AppBar style={{height: 70, backgroundColor: '#f2f2f2'}} position="static" color="inherit">
+          <Toolbar >
           {/* <img
               src={leaderboard}
               className="leaderboard"
