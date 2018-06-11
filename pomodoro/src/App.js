@@ -1,18 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+
+import LoginForm from "./components/LoginForm";
+import UserPage from "./components/UserPage";
+import fire from "./components/firebaseInfo";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: null
+    };
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem("user", user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem("user");
+      }
+    });
+  };
+
   render() {
+    console.log("hello world");
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        {this.state.user && <UserPage />}
+        {this.state.user === null && <LoginForm />}
       </div>
     );
   }

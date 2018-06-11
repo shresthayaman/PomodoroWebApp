@@ -1,10 +1,16 @@
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One|Oxygen");
+
 .App {
   text-align: center;
+  background-color: white;
+  margin-top: 4%;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.App2 {
+  text-align: center;
+  background-color: #f2f2f2;
+  margin-top: 6%;
 }
 
 .App-header {
@@ -15,14 +21,129 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 1.7em;
+  font-family: "Fjalla One", sans-serif;
+  margin-top: 10%;
+  color: #929292;
+}
+
+.leaderboard-font {
+  font-size: 1.2em;
+  font-family: "Fjalla One", sans-serif;
 }
 
 .App-intro {
   font-size: large;
 }
 
+.login-box {
+  width: 40%;
+  display: inline-block;
+  font-family: "Fjalla One", sans-serif;
+  margin-top: 4%;
+  padding-bottom: 30px;
+  text-align: center;
+  background-color: white;
+}
+
+#round {
+  border-radius: 50%;
+}
+
+.logo {
+  width: 35%;
+  margin-top: 7%;
+}
+
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.timer {
+  height: 50%;
+  width: 50%;
+}
+
+#loginButton {
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/*  NewUserForm.js css */
+
+.login-box2 { 
+  width: 41%;
+  display: inline-block;
+  font-family: "Fjalla One", sans-serif;
+  padding-bottom: 30px;
+  text-align: center;
+  background-color: white;
+  margin-top: 6%;
+}
+
+.clock {
+  position: absolute;
+}
+
+.header {
+  background-color: white;
+  margin-top: 8%;
+}
+
+.biglogin {
+  text-align: center;
+}
+
+.signupDiv {
+  display: inline-block;
+}
+
+
+
+.error-message {
+
+  color: red;
+}
+
+
+.taskBarFont { 
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;  
+  font-Size: 15;
+  color: white; 
+  text-align: center; 
+  font-weight: 500;
+  padding-top: 5;
+}
+
+.fillerSpace { 
+  padding-bottom: 10px;
+}
+
+.status { 
+  font-family: "Fjalla One", sans-serif;
+  text-align: center; 
+}
+
+.cyclesFont { 
+  font-size: 30px;
+  font-family: "Fjalla One", sans-serif;
+}
+
+.boxText { 
+  text-align: center; 
+}
+
+.cyclesFont2 { 
+  font-size: 40px;
+  font-family: "Fjalla One", sans-serif;
 }

@@ -3,14 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^1.2.0",
+    "@material-ui/icons": "^1.1.0",
+    "firebase": "^5.0.4",
     "react": "^16.4.0",
+    "react-circular-progressbar": "^0.8.0",
+    "react-countdown-now": "^1.3.0",
     "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "react-svg-timer": "^1.1.2",
+    "typeface-roboto": "0.0.54"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shresthayaman/PomodoroWebApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shresthayaman/PomodoroWebApp/issues"
+  },
+  "homepage": "https://github.com/shresthayaman/PomodoroWebApp#readme"
 }
