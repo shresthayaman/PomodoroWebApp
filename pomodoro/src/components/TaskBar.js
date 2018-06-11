@@ -23,7 +23,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add.js";
 
-import listLogo from "./listLogo.png";
+import listLogo from "./listLogo2.png";
 import logo from "./pomodoroLogo.png";
 import leaderboardLogo from "./leaderboard2.png";
 import Timer from "./Timer";
@@ -31,6 +31,7 @@ import Timer from "./Timer";
 import { Link } from "react-router-dom";
 import fire from "./firebaseInfo";
 import firebase from "firebase";
+
 
 import "typeface-roboto";
 
@@ -82,7 +83,7 @@ const styles = theme => ({
   drawerPaper: {
     position: "relative",
     width: drawerWidth,
-    backgroundColor: "#D3E9ED"
+    backgroundColor: "#ace8d6"
   },
   drawerHeader: {
     display: "flex",
@@ -281,21 +282,12 @@ class TaskBar extends React.Component {
         }}
       >
         <div className={classes.drawerHeader}>
-          <img
+          { <img
             src={listLogo}
             height="40"
             width="40"
-            style={{ marginLeft: 10 }}
-          />
-          <p
-            style={{
-              fontFamily: "Verdana, Geneva, sans-serif",
-              fontSize: 20,
-              color: "#6BB3A1"
-            }}
-          >
-            To Do List
-          </p>
+          style={{textalign: "center"}}/> }
+          <p className="taskBarFont">TO DO LIST</p>
           <IconButton onClick={this.handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
@@ -319,7 +311,7 @@ class TaskBar extends React.Component {
             id="taskInput"
             placeholder="Add Task"
             margin="normal"
-            style={{ width: "85%", marginLeft: "5%" }}
+            style={{ width: "85%", marginLeft: "5%"}}
             onKeyPress={this.handleKeyPress}
             onChange={event =>
               this.setState({ currentInput: event.target.value })
@@ -329,20 +321,10 @@ class TaskBar extends React.Component {
             <AddIcon />
           </Button>
         </div>
-        <br />
-        <h
-          style={{
-            fontFamily: "Verdana, Geneva, sans-serif",
-            fontSize: 15,
-            color: "#6BB3A1",
-            textAlign: "center",
-            marginBottom: "3%"
-          }}
-        >
-          Active Tasks
-        </h>
-
         <Divider />
+        <div className="fillerSpace" />
+        <h className="taskBarFont">ACTIVE TASKS  </h>
+
 
         <List style={{ minHeight: "37%", maxHeight: "37%", overflow: "auto" }}>
           {this.state.toDoList.map(listItem => {
@@ -368,20 +350,10 @@ class TaskBar extends React.Component {
             );
           })}
         </List>
-
-        <h
-          style={{
-            fontFamily: "Verdana, Geneva, sans-serif",
-            fontSize: 15,
-            color: "#6BB3A1",
-            textAlign: "center",
-            marginBottom: "3%"
-          }}
-        >
-          Completed Tasks
-        </h>
-
         <Divider />
+
+        <div className="fillerSpace" />
+        <h className="taskBarFont">COMPLETED TASKS</h>
 
         <List style={{ minHeight: "37%", maxHeight: "37%", overflow: "auto" }}>
           {this.state.completedList.map(listItem => {
@@ -450,8 +422,11 @@ class TaskBar extends React.Component {
                 <MenuIcon />
               </IconButton>
 
-              <img src={logo} height="40" />
-
+              <img src={logo} 
+                height="40"
+                style={{textalign: "center", marginLeft  : 'auto',
+                marginRight : 'auto', alignItems: "center" }}/>
+              
               <div style={{ display: "flex", alignItems: "center" }}>
                 <div style={{ marginRight: 50 }}>
                   <Link to="/Leaderboard">

@@ -114,3 +114,36 @@
 
   color: red;
 }
+
+
+.taskBarFont { 
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;  
+  font-Size: 15;
+  color: white; 
+  text-align: center; 
+  font-weight: 500;
+  padding-top: 5;
+}
+
+.fillerSpace { 
+  padding-bottom: 10px;
+}
+
+.status { 
+  font-family: "Fjalla One", sans-serif;
+  text-align: center; 
+}
+
+.cyclesFont { 
+  font-size: 30px;
+  font-family: "Fjalla One", sans-serif;
+}
+
+.boxText { 
+  text-align: center; 
+}
+
+.cyclesFont2 { 
+  font-size: 40px;
+  font-family: "Fjalla One", sans-serif;
+}

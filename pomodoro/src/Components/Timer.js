@@ -31,7 +31,7 @@ class Timer extends Component {
       paused_num: 0,
       button_text: "Start Break",
       button_color: "primary",
-      status_text: "Keep Working",
+      status_text: "Keep Working!",
       current_time: 1500000,
       reset_text: "Start",
       dummy_time: 0,
@@ -158,7 +158,7 @@ class Timer extends Component {
         open: false,
         status_text: "Keep Working",
         button_text: "Start Break",
-        button_color: "primary"
+        button_color: "grey"
       });
     }
     let pause_time = Date.now();
@@ -169,7 +169,7 @@ class Timer extends Component {
         start_time: pause_time,
         twentyfive: work_time,
         status_text: "Keep Working",
-        button_color: "primary",
+        button_color: "grey",
         current_time: pause_time + work_time,
         reset_text: "Reset"
       });
@@ -195,7 +195,7 @@ class Timer extends Component {
         twentyfive: break_time,
         start_time: Date.now(),
         button_text: "Go Back to Work",
-        status_text: "Keep Relaxing",
+        status_text: "Relax..",
         button_color: "secondary",
 
         current_time: Date.now() + break_time,
@@ -210,7 +210,7 @@ class Timer extends Component {
         twentyfive: work_time,
         start_time: Date.now(),
         button_text: "Start Break",
-        button_color: "primary",
+        button_color: "grey",
         status_text: "Keep Working",
 
         current_time: Date.now() + work_time,
@@ -271,7 +271,7 @@ class Timer extends Component {
     const renderer = ({ hours, minutes, seconds, completed }) => {
       // Render a countdown
       return (
-        <span>
+        <span style={{fontfamily: "Fjalla One, sans-serif"}}>
           {minutes}:{seconds}
         </span>
       );
@@ -302,7 +302,9 @@ class Timer extends Component {
             position: "absolute",
             top: "43%",
             right: "43%",
-            fontSize: "80px"
+            fontSize: "80px", 
+            fontfamily: "Fjalla One, sans-serif"
+
           }}
         >
           <Countdown
@@ -316,10 +318,10 @@ class Timer extends Component {
           style={{
             top: "45%",
             position: "absolute",
-            left: "75%"
+            left: "75%",
           }}
         >
-          <Button onClick={this.resetButton} variant="raised" color="primary">
+          <Button onClick={this.resetButton} variant="raised" color="grey">
             {this.state.reset_text}
           </Button>
           <br />
@@ -337,7 +339,7 @@ class Timer extends Component {
             <Button
               onClick={this.handleClickOpen}
               variant="raised"
-              color="primary"
+              color="grey"
             >
               Edit Timer
             </Button>
@@ -391,20 +393,25 @@ class Timer extends Component {
         <div
           clasname="status"
           style={{
-            top: "85%",
-            position: "absolute",
-            left: "43%"
+            // top: "85%",
+            // position: "absolute",
+            // left: "43%"
+            fontfamily: "Fjalla One, sans-serif", 
+            textalign: "center",
+            paddingleft: 20
+
           }}
         >
-          <h2>{this.state.status_text}</h2>
+          <h2 className = " cyclesFont2" >{this.state.status_text}</h2>
           <div
             className="cycles"
             style={{
               left: "20%",
-              size: "20px"
+              size: "30px",
+              fontFamily: "Fjalla One, sans-serif"
             }}
           >
-            <p>Cycles: {this.state.num_cycles} </p>
+            <p className="cyclesFont">Cycles: {this.state.num_cycles} </p>
           </div>
         </div>
       </div>
