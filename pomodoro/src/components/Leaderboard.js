@@ -15,7 +15,6 @@ import leaderboardLogo from "./leaderboard2.png";
 
 const style = {
   background: "#f2f2f2",
-
   color: "white",
   paddingBottom: '10px'
 };
@@ -68,10 +67,9 @@ export default class Leaderboard extends Component {
     });
     return (
       <div>
-
-        <style>{"body { background-color: '#f2f2f2'; }"}</style>
+        <style>{"body { background-color: white;}"}</style>
         <AppBar style={{height: 70}} position="static" color="inherit">
-          <Toolbar>
+          <Toolbar  style={{backgroundColor: '#f2f2f2'}}>
           {/* <img
               src={leaderboard}
               className="leaderboard"

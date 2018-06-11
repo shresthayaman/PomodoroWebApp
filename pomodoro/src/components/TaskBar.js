@@ -33,6 +33,7 @@ import fire from "./firebaseInfo";
 import firebase from "firebase";
 
 import "typeface-roboto";
+import "./TaskBar.css"; 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const drawerWidth = 400;
@@ -82,7 +83,7 @@ const styles = theme => ({
   drawerPaper: {
     position: "relative",
     width: drawerWidth,
-    backgroundColor: "#D3E9ED"
+    backgroundColor: "#ace8d6"
   },
   drawerHeader: {
     display: "flex",
@@ -285,17 +286,13 @@ class TaskBar extends React.Component {
             src={listLogo}
             height="40"
             width="40"
-            style={{ marginLeft: 10 }}
-          />
-          <p
-            style={{
-              fontFamily: "Verdana, Geneva, sans-serif",
-              fontSize: 20,
-              color: "#6BB3A1"
-            }}
-          >
-            To Do List
-          </p>
+            style={{ marginLeft: 10 }} />
+        <h
+          style={{
+            fontFamily: 'Fjalla One, sans-serif', 
+            fontSize: '20',
+            color: "white"
+          }}>TO DO LIST</h>
           <IconButton onClick={this.handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
@@ -338,10 +335,12 @@ class TaskBar extends React.Component {
             fontSize: 15,
             color: "#6BB3A1",
             textAlign: "center",
-            marginBottom: "3%"
-          }}
-        >
-          Active Tasks
+            marginBottom: "3%", 
+            fontFamily: 'Fjalla One, sans-serif', 
+            fontSize: '20',
+            color: "white" 
+          }} >
+          ACTIVE TASKS
         </h>
 
         <Divider />
@@ -373,14 +372,15 @@ class TaskBar extends React.Component {
 
         <h
           style={{
-            fontFamily: "Verdana, Geneva, sans-serif",
-            fontSize: 15,
-            color: "#6BB3A1",
             textAlign: "center",
-            marginBottom: "3%"
+            marginBottom: "3%",   
+            fontFamily: 'Fjalla One, sans-serif', 
+            fontSize: '20',
+            color: "white"
+
           }}
         >
-          Completed Tasks
+          COMPLETED TASKS
         </h>
 
         <Divider />

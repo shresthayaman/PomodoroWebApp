@@ -155,6 +155,7 @@ class Timer extends Component {
 
     if (this.state.started == false) {
       this.setState({
+        reset:true,
         started: true,
         open: false,
         status_text: "Keep Working",
@@ -180,7 +181,7 @@ class Timer extends Component {
     } else {
 
       this.setState({});
-
+        reset:false
     }
   };
 
@@ -286,12 +287,13 @@ class Timer extends Component {
     return (
       <div>
         <div
-          className="circle"
-          style={{
-            position: "absolute",
-            width: "1200px",
-            height: "1200px",
-            right: "5%"
+           className="circle"
+           style={{
+             width: "1200px",
+             height: "1200px",
+             position: 'absolute', 
+             top: '10%', 
+            left: '30%'
           }}
         >
           <CircularProgressbar
@@ -400,7 +402,6 @@ class Timer extends Component {
           }}
         >
           <h2>{this.state.status_text}</h2>
-
           <p>{this.state.num_cycles} </p>
 
         </div>

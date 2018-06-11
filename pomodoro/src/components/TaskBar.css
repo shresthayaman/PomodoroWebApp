@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+.tasktext {
+    font-family: 'Fjalla One', sans-serif;
+    font-Size: 20; 
+    color: "white"; 
+}
